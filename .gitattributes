@@ -1,4 +1,1 @@
-﻿* text=auto eol=lf
-conf.yml text eol=lf
-scripts/*.sh text eol=lf
-views/*.php text eol=lf
+* text=auto eol=lf`nconf.yml text eol=lf`nscripts/*.sh text eol=lf`nviews/*.php text eol=lf`ndata/*.sh text eol=lf`nresources/**/*.css text eol=lf`nresources/**/*.js text eol=lf`ncomponents/**/*.tsx text eol=lf`ncomponents/**/*.css text eol=lf`ncomponents/**/*.ts text eol=lf`nassets/*.css text eol=lf
