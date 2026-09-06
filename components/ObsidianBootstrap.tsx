@@ -1,36 +1,40 @@
-/**
- * obsidianTheme — global bootstrap component.
- * Injected by Blueprint at Dashboard/Global/BeforeSection and
- * Authentication/Container/BeforeContent. Applies the saved theme
- * configuration as early as possible and keeps it live.
- */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './theme.css';
-import { applyConfig, loadConfig } from './obsidianConfig';
+import { ObsidianProvider, useObsidian } from '../context/KyronixContext';
+
+const FloatButton: React.FC = () => {
+    const { setCustomizerOpen } = useObsidian();
+    const [visible, setVisible] = useState(true);
+    if (!visible) return null;
+    return (
+        <div style={{
+            position: 'fixed', bottom: '24px', right: '24px', zIndex: 9999,
+            display: 'flex', alignItems: 'center', gap: '8px',
+        }}>
+            <button onClick={() => setCustomizerOpen(true)} style={{
+                padding: '12px 20px',
+                borderRadius: 'var(--obsidian-radius, 999px)',
+                border: 'none',
+                background: 'linear-gradient(135deg, var(--obsidian-primary, #b5e48c), var(--obsidian-accent, #d9ed92))',
+                color: '#0d1117', fontWeight: 700, fontSize: '13px',
+                cursor: 'pointer', boxShadow: '0 4px 16px rgba(0,0,0,0.4)',
+            }}>Customize Obsidian</button>
+            <button onClick={() => setVisible(false)} title="Hide" style={{
+                width: '28px', height: '28px', borderRadius: '50%',
+                border: '1px solid var(--obsidian-border, #333)',
+                background: 'var(--obsidian-surface, #1a1a1a)',
+                color: 'var(--obsidian-text, #eee)', cursor: 'pointer', fontSize: '14px', lineHeight: 1,
+            }}>\u00d7</button>
+        </div>
+    );
+};
 
 export const ObsidianBootstrap: React.FC = () => {
-    useEffect(() => {
-        applyConfig(loadConfig());
-
-        const onChange = () => applyConfig(loadConfig());
-        window.addEventListener('obsidian:config-changed', onChange);
-        window.addEventListener('storage', onChange);
-
-        const media = window.matchMedia('(prefers-color-scheme: dark)');
-        const onScheme = () => {
-            const cfg = loadConfig();
-            if (cfg.mode === 'system') applyConfig(cfg);
-        };
-        media.addEventListener('change', onScheme);
-
-        return () => {
-            window.removeEventListener('obsidian:config-changed', onChange);
-            window.removeEventListener('storage', onChange);
-            media.removeEventListener('change', onScheme);
-        };
-    }, []);
-
-    return null;
+    return (
+        <ObsidianProvider>
+            <FloatButton />
+        </ObsidianProvider>
+    );
 };
 
 export default ObsidianBootstrap;

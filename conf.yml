@@ -3,7 +3,7 @@ info:
   identifier: obsidiantheme
   description: A polished dark theme for Pterodactyl Panel with a live, admin-only theme customizer.
   version: "1.0.1"
-  target: "rolling"
+  target: "beta-2026-08"
   author: "paradox6ygf"
   icon: "assets/icon.png"
 
