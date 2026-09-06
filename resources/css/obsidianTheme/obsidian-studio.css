@@ -156,6 +156,22 @@
     cursor: pointer;
     border: 1px solid var(--obsidian-border, #333);
     background: var(--obsidian-surface-2, #222);
+    color: var(--obsidian-text, #eee);
+    padding: 0.5rem 1rem;
+    border-radius: var(--obsidian-radius, 8px);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    transition: background var(--obsidian-transition, 150ms), border-color var(--obsidian-transition, 150ms);
+}
+.obs-st-btn:hover {
+    background: var(--obsidian-surface-3, #2a2a2a);
+    border-color: var(--obsidian-primary, #9db95c);
+}
+.obs-st-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* ---- Preset gallery cards ---- */
 .obs-st-presets {
     display: grid;
@@ -263,20 +279,3 @@
     .obs-st-tab { white-space: nowrap; }
     .obs-st-presets { grid-template-columns: 1fr; }
 }
-    color: var(--obsidian-text, #eee);
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 0.5rem 0.9rem;
-    border-radius: 8px;
-    transition: background-color 150ms ease, transform 150ms ease;
-}
-.obs-st-btn:hover:not(:disabled) { background: var(--obsidian-surface-3, #2d2d2d); }
-.obs-st-btn:active:not(:disabled) { transform: translateY(1px); }
-.obs-st-btn:disabled { opacity: 0.45; cursor: default; }
-.obs-st-btn-primary {
-    background: var(--obsidian-primary, #7aae52);
-    border-color: var(--obsidian-primary, #7aae52);
-    color: var(--obsidian-text-inverse, #0d1117);
-}
-.obs-st-btn-primary:hover:not(:disabled) { background: var(--obsidian-primary-hover, #8cc463); }
-.obs-st-btn-row { display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
