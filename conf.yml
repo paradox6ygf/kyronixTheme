@@ -12,6 +12,7 @@ admin:
   css: "assets/admin.css"
 
 dashboard:
+  css: "assets/dashboard.css"
   components: "components"
 
 data:

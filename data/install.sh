@@ -11,21 +11,17 @@ echo "obsidiantheme: applying panel patches..."
 # -----------------------------------------------------------------------------
 # 1. Purge legacy CSS import lines left behind by earlier extension versions.
 #
-# Older releases registered the dashboard stylesheet through conf.yml
-# dashboard.css, which makes Blueprint append an @import line to
-# extensions.css. That import is invalid mid-file (postcss warning) and is no
-# longer used - the stylesheet is now bundled via webpack. Remove any leftovers
-# (both the old kyronixtheme and obsidiantheme variants) so the build is clean.
+# Only remove the old kyronixtheme import. The current obsidiantheme import
+# is managed by Blueprint's dashboard.css handler and must be preserved.
 # -----------------------------------------------------------------------------
 EXT_CSS="resources/scripts/blueprint/css/extensions.css"
 if [ -f "$EXT_CSS" ]; then
-    if grep -qE 'imported/(kyronix|obsidian)theme\.css' "$EXT_CSS"; then
-        sed -i '\@imported/\(kyronix\|obsidian\)theme\.css@d' "$EXT_CSS"
+    if grep -q 'imported/kyronixtheme.css' "$EXT_CSS"; then
+        sed -i '\@imported/kyronixtheme.css@d' "$EXT_CSS"
         echo "obsidiantheme: purged legacy import from $EXT_CSS"
     fi
 fi
 rm -f "resources/scripts/blueprint/css/imported/kyronixtheme.css"
-rm -f "resources/scripts/blueprint/css/imported/obsidiantheme.css"
 
 # -----------------------------------------------------------------------------
 # 2. Patch the Blade layout so admin pages get the theme data attributes
