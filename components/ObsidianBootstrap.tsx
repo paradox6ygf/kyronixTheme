@@ -36,7 +36,7 @@ export const ObsidianBootstrap: React.FC = () => {
 
     return (
         <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 9999, display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <button onClick={() => { window.location.hash = '#/account/customizer'; }} style={{
+            <button onClick={() => { window.location.href = '/account/customizer'; }} style={{
                 padding: '11px 18px', borderRadius: 'var(--obsidian-radius, 10px)', border: '1px solid var(--obsidian-border, #333)',
                 background: 'var(--obsidian-primary, #20344f)', color: 'var(--obsidian-text-heading, #f5f7fa)',
                 fontWeight: 600, fontSize: '13px', cursor: 'pointer',
