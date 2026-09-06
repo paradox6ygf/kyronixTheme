@@ -24,6 +24,23 @@ fi
 rm -f "resources/scripts/blueprint/css/imported/kyronixtheme.css"
 
 # -----------------------------------------------------------------------------
+# 1b. Ensure the dashboard CSS import target exists.
+#
+# On UPDATE runs Blueprint skips symlink creation (its $DUPLICATE flag), so if
+# the link was ever removed, the @import line in extensions.css dangles and
+# postcss fails the whole build. Restore the link from the extension's own
+# dashboard.css (the exact file Blueprint copies on install).
+# -----------------------------------------------------------------------------
+IMPORTED_CSS="resources/scripts/blueprint/css/imported/obsidiantheme.css"
+EXT_DASH_CSS=".blueprint/extensions/obsidiantheme/dashboard.css"
+if [ ! -e "$IMPORTED_CSS" ] && [ -f "$EXT_DASH_CSS" ]; then
+    mkdir -p "$(dirname "$IMPORTED_CSS")"
+    ln -s -r -T "$EXT_DASH_CSS" "$IMPORTED_CSS" 2>/dev/null \
+        || cp "$EXT_DASH_CSS" "$IMPORTED_CSS"
+    echo "obsidiantheme: restored missing dashboard css link"
+fi
+
+# -----------------------------------------------------------------------------
 # 2. Patch the Blade layout so admin pages get the theme data attributes
 #    before any JavaScript runs.
 # -----------------------------------------------------------------------------
