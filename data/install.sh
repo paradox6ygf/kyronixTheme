@@ -6,6 +6,20 @@
 #
 set -u
 
+# Blueprint's bundled YAML parser emits lowercase variable names, but the route
+# installer matches MixedCase — so Components.yml routes are silently skipped.
+# Inject the customizer route ourselves (idempotent) to guarantee it exists.
+ROUTES_TS="resources/scripts/blueprint/extends/routers/routes.ts"
+if [ -f "$ROUTES_TS" ] && ! grep -q "ObsidianCustomizer" "$ROUTES_TS"; then
+  sed -i "s|/\* blueprint/import \*/|/* blueprint/import */ import ObsidianCustomizer from '@blueprint/extensions/obsidiantheme/ObsidianCustomizer';|" "$ROUTES_TS"
+  sed -i "s|/\* routes/account \*/|/* routes/account */ { path: 'customizer', name: 'Obsidian Theme', component: ObsidianCustomizer, adminOnly: true, identifier: 'obsidiantheme' },|" "$ROUTES_TS"
+  if grep -q "ObsidianCustomizer" "$ROUTES_TS"; then
+    echo "obsidiantheme: registered /account/customizer route"
+  else
+    echo "obsidiantheme: WARNING could not register customizer route"
+  fi
+fi
+
 echo "obsidiantheme: applying panel patches..."
 
 # -----------------------------------------------------------------------------

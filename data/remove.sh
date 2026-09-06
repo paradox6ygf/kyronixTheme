@@ -4,6 +4,14 @@
 #
 set -u
 
+echo "obsidiantheme: removing customizer route registration..."
+ROUTES_TS="resources/scripts/blueprint/extends/routers/routes.ts"
+if [ -f "$ROUTES_TS" ]; then
+  sed -i "/import ObsidianCustomizer from '@blueprint\/extensions\/obsidiantheme\/ObsidianCustomizer';/d" "$ROUTES_TS"
+  sed -i "/{ path: 'customizer', name: 'Obsidian Theme', component: ObsidianCustomizer/d" "$ROUTES_TS"
+  echo "obsidiantheme: route registration removed."
+fi
+
 echo "obsidiantheme: removing panel patches..."
 
 EXT_CSS="resources/scripts/blueprint/css/extensions.css"
