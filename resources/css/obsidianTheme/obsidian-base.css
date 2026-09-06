@@ -1,34 +1,51 @@
 /* =============================================================================
-   obsidianTheme - Base Styles & Global Overrides
+   obsidianTheme - Global Base Override
    ============================================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-*, *::before, *::after { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box !important; }
 
 html, body {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
     font-family: var(--obsidian-font-sans) !important;
-    background-color: var(--obsidian-background) !important;
+    font-size: var(--obsidian-font-size-base) !important;
+    font-weight: var(--obsidian-font-weight-normal) !important;
+    line-height: var(--obsidian-line-height-normal) !important;
     color: var(--obsidian-text) !important;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--obsidian-background) !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    overflow-x: hidden !important;
 }
 
-body { overflow-x: hidden; }
+#app, #app > div, [id*='app'], [class*='app-'], [class*='App'] {
+    background-color: var(--obsidian-background) !important;
+    color: var(--obsidian-text) !important;
+    min-height: 100vh !important;
+}
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--obsidian-font-heading) !important;
-    color: var(--obsidian-text-heading) !important;
     font-weight: var(--obsidian-font-weight-semibold) !important;
+    color: var(--obsidian-text-heading) !important;
+    letter-spacing: var(--obsidian-letter-spacing-tight) !important;
 }
 
-a { color: var(--obsidian-primary) !important; text-decoration: none !important; }
+a { color: var(--obsidian-primary) !important; text-decoration: none !important; transition: color var(--obsidian-transition) !important; }
 a:hover { color: var(--obsidian-primary-hover) !important; }
 
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: var(--obsidian-background); }
-::-webkit-scrollbar-thumb { background: var(--obsidian-scrollbar); border-radius: 4px; }
+p { color: var(--obsidian-text) !important; }
+span, div, section, article, aside, header, footer, main, nav { color: var(--obsidian-text); }
 
-::selection { background: var(--obsidian-primary-subtle); color: var(--obsidian-text-heading); }
+hr { border-color: var(--obsidian-border) !important; }
+
+::-webkit-scrollbar { width: 8px !important; height: 8px !important; }
+::-webkit-scrollbar-track { background: var(--obsidian-background) !important; }
+::-webkit-scrollbar-thumb { background: var(--obsidian-scrollbar) !important; border-radius: 4px !important; }
+::-webkit-scrollbar-thumb:hover { background: var(--obsidian-border-strong) !important; }
+
+::selection { background: var(--obsidian-primary-subtle) !important; color: var(--obsidian-text-heading) !important; }
+
+:focus-visible { outline: 2px solid var(--obsidian-primary) !important; outline-offset: 2px !important; }

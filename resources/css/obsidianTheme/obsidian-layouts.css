@@ -1,57 +1,33 @@
 /* =============================================================================
-   obsidianTheme - Layout Overrides (targets actual Pterodactyl layout)
+   obsidianTheme - Layout Overrides
    ============================================================================= */
 
 /* ---- App Shell ---- */
-#app, .app, .wrapper, #container, .container-fluid {
+#app, .app, .wrapper, #container, .container-fluid, [class*="app-shell"], [class*="app-wrapper"] {
     background: var(--obsidian-background) !important;
     color: var(--obsidian-text) !important;
 }
 
-/* ---- Main Header ---- */
-.main-header, header.main-header {
-    background: var(--obsidian-navbar) !important;
-    border-bottom: 1px solid var(--obsidian-navbar-border) !important;
-}
-
-/* ---- Logo ---- */
-.logo, .main-header .logo, .navbar-brand {
-    background: var(--obsidian-navbar) !important;
+/* ---- Content wrapper ---- */
+.content-wrapper, .content, [class*="content-wrapper"], [class*="main-content"] {
+    background: var(--obsidian-background) !important;
     color: var(--obsidian-text) !important;
 }
-.logo:hover { background: var(--obsidian-surface) !important; }
 
-/* ---- Sidebar Menu ---- */
-.sidebar-menu > li > a { color: var(--obsidian-text) !important; }
-.sidebar-menu > li:hover > a { background: var(--obsidian-sidebar-item-hover) !important; color: var(--obsidian-primary) !important; }
-.sidebar-menu > li.active > a { background: var(--obsidian-sidebar-item-active) !important; color: var(--obsidian-primary) !important; }
-
-/* ---- Content Header ---- */
-.content-header h1 { color: var(--obsidian-text-heading) !important; }
-.content-header .breadcrumb a { color: var(--obsidian-primary) !important; }
-
-/* ---- Console (Server Terminal) ---- */
-.console, .terminal, [class*='console'], [class*='terminal'], #terminal, .xterm {
-    background: var(--obsidian-console-bg) !important;
-    color: var(--obsidian-text) !important;
-    border-color: var(--obsidian-border) !important;
-}
-.xterm-viewport, .xterm-screen { background: var(--obsidian-console-bg) !important; }
-
-/* ---- File Manager ---- */
-.file-manager, [class*='file-manager'], .fm-table th { background: var(--obsidian-surface) !important; }
-.fm-table td { border-color: var(--obsidian-border) !important; }
-.fm-table tr:hover { background: var(--obsidian-surface-2) !important; }
-
-/* ---- Server List (Dashboard) ---- */
-.server-card, [class*='server-card'], [class*='server-row'] {
-    background: var(--obsidian-card) !important;
-    border-color: var(--obsidian-border) !important;
-}
-.server-card:hover, [class*='server-row']:hover { background: var(--obsidian-card-hover) !important; }
+/* ---- Content header ---- */
+.content-header h1, .page-title, h1.page-header { color: var(--obsidian-text-heading) !important; }
+.content-header .breadcrumb a, .breadcrumb a { color: var(--obsidian-primary) !important; }
 
 /* ---- Responsive ---- */
-@media (max-width: 768px) {
-    .main-sidebar { transform: translateX(-100%); }
-    .sidebar-open .main-sidebar { transform: translateX(0); }
+@media (max-width: 767px) {
+    .main-sidebar { transform: translate(-100%, 0); }
+    .sidebar-open .main-sidebar { transform: translate(0, 0); }
+}
+
+@media (min-width: 768px) {
+    .sidebar-collapse .main-sidebar { width: 0; }
+}
+
+@media (max-width: 480px) {
+    .content-header h1 { font-size: 1.5rem; }
 }

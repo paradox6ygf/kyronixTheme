@@ -2,39 +2,56 @@
 
 /* ==== obsidian-base.css ==== */
 /* =============================================================================
-   obsidianTheme - Base Styles & Global Overrides
+   obsidianTheme - Global Base Override
    ============================================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-*, *::before, *::after { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box !important; }
 
 html, body {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
     font-family: var(--obsidian-font-sans) !important;
-    background-color: var(--obsidian-background) !important;
+    font-size: var(--obsidian-font-size-base) !important;
+    font-weight: var(--obsidian-font-weight-normal) !important;
+    line-height: var(--obsidian-line-height-normal) !important;
     color: var(--obsidian-text) !important;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--obsidian-background) !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    overflow-x: hidden !important;
 }
 
-body { overflow-x: hidden; }
+#app, #app > div, [id*='app'], [class*='app-'], [class*='App'] {
+    background-color: var(--obsidian-background) !important;
+    color: var(--obsidian-text) !important;
+    min-height: 100vh !important;
+}
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--obsidian-font-heading) !important;
-    color: var(--obsidian-text-heading) !important;
     font-weight: var(--obsidian-font-weight-semibold) !important;
+    color: var(--obsidian-text-heading) !important;
+    letter-spacing: var(--obsidian-letter-spacing-tight) !important;
 }
 
-a { color: var(--obsidian-primary) !important; text-decoration: none !important; }
+a { color: var(--obsidian-primary) !important; text-decoration: none !important; transition: color var(--obsidian-transition) !important; }
 a:hover { color: var(--obsidian-primary-hover) !important; }
 
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: var(--obsidian-background); }
-::-webkit-scrollbar-thumb { background: var(--obsidian-scrollbar); border-radius: 4px; }
+p { color: var(--obsidian-text) !important; }
+span, div, section, article, aside, header, footer, main, nav { color: var(--obsidian-text); }
 
-::selection { background: var(--obsidian-primary-subtle); color: var(--obsidian-text-heading); }
+hr { border-color: var(--obsidian-border) !important; }
+
+::-webkit-scrollbar { width: 8px !important; height: 8px !important; }
+::-webkit-scrollbar-track { background: var(--obsidian-background) !important; }
+::-webkit-scrollbar-thumb { background: var(--obsidian-scrollbar) !important; border-radius: 4px !important; }
+::-webkit-scrollbar-thumb:hover { background: var(--obsidian-border-strong) !important; }
+
+::selection { background: var(--obsidian-primary-subtle) !important; color: var(--obsidian-text-heading) !important; }
+
+:focus-visible { outline: 2px solid var(--obsidian-primary) !important; outline-offset: 2px !important; }
 /* ==== obsidian-tokens.css ==== */
 /* =============================================================================
    obsidianTheme — CSS Design Token System
@@ -539,49 +556,67 @@ a:hover { color: var(--obsidian-primary-hover) !important; }
 
 /* ==== obsidian-components.css ==== */
 /* =============================================================================
-   obsidianTheme - Component Overrides (targets actual Pterodactyl elements)
+   obsidianTheme - Global Component Overrides
+   Targets actual Pterodactyl HTML elements
    ============================================================================= */
 
-/* ---- Cards / Panels / Boxes ---- */
-[class*='box'], [class*='card'], [class*='panel'], .modal-content,
-.theme-box, .pterodactyl-box {
-    background: var(--obsidian-card) !important;
-    border-color: var(--obsidian-border) !important;
+/* ---- Containers / Surfaces ---- */
+[class*="container"], [class*="wrapper"], [class*="content"],
+[class*="layout"], [class*="page"], [class*="dashboard"] {
+    background-color: var(--obsidian-background) !important;
     color: var(--obsidian-text) !important;
 }
 
-[class*='box-header'], [class*='card-header'], .modal-header {
+/* ---- Cards / Panels / Boxes ---- */
+[class*="box"], [class*="card"], [class*="panel"], [class*="widget"],
+[class*="tile"], [class*="module"], .modal-content, .popover, .tooltip {
+    background: var(--obsidian-card) !important;
+    border-color: var(--obsidian-border) !important;
+    color: var(--obsidian-text) !important;
+    border-radius: var(--obsidian-radius-md) !important;
+}
+
+[class*="box-header"], [class*="card-header"], [class*="panel-header"],
+.modal-header, .popover-header {
     background: var(--obsidian-surface) !important;
     border-bottom-color: var(--obsidian-border) !important;
     color: var(--obsidian-text-heading) !important;
 }
 
-[class*='box-body'], [class*='card-body'], .modal-body {
+[class*="box-body"], [class*="card-body"], [class*="panel-body"], .modal-body {
     background: var(--obsidian-card) !important;
     color: var(--obsidian-text) !important;
 }
 
-[class*='box-footer'], [class*='card-footer'], .modal-footer {
+[class*="box-footer"], [class*="card-footer"], [class*="panel-footer"], .modal-footer {
     background: var(--obsidian-surface) !important;
     border-top-color: var(--obsidian-border) !important;
 }
 
-/* ---- Buttons ---- */
-.btn, button, [role='button'], input[type='submit'], input[type='button'] {
-    background: var(--obsidian-button-bg, var(--obsidian-primary)) !important;
-    border-color: var(--obsidian-border) !important;
-    color: var(--obsidian-text) !important;
-    border-radius: var(--obsidian-radius-sm) !important;
+[class*="box-title"], [class*="card-title"], [class*="panel-title"] {
+    color: var(--obsidian-text-heading) !important;
 }
 
-.btn:hover, button:hover { background: var(--obsidian-button-hover, var(--obsidian-primary-hover)) !important; }
-.btn-primary, .btn-info, .btn-success, .btn-warning, .btn-danger { color: #fff !important; }
+/* ---- Buttons ---- */
+.btn, button, [role="button"], input[type="submit"], input[type="button"], input[type="reset"] {
+    background: var(--obsidian-button-bg, var(--obsidian-surface-2)) !important;
+    border: 1px solid var(--obsidian-border) !important;
+    color: var(--obsidian-text) !important;
+    border-radius: var(--obsidian-radius-sm) !important;
+    transition: all var(--obsidian-transition) !important;
+}
+
+.btn:hover, button:hover { background: var(--obsidian-button-hover, var(--obsidian-surface-3)) !important; border-color: var(--obsidian-border-strong) !important; }
+.btn-primary, .btn-info { background: var(--obsidian-primary) !important; border-color: var(--obsidian-primary) !important; color: #fff !important; }
+.btn-success { background: var(--obsidian-success) !important; border-color: var(--obsidian-success) !important; color: #fff !important; }
+.btn-warning { background: var(--obsidian-warning) !important; border-color: var(--obsidian-warning) !important; color: #000 !important; }
+.btn-danger  { background: var(--obsidian-danger)  !important; border-color: var(--obsidian-danger)  !important; color: #fff !important; }
 
 /* ---- Forms / Inputs ---- */
 input, textarea, select, .form-control, .input-group input,
-input:not([type='submit']):not([type='button']):not([type='checkbox']):not([type='radio']) {
+input:not([type="submit"]):not([type="button"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]) {
     background: var(--obsidian-input-bg) !important;
-    border-color: var(--obsidian-border) !important;
+    border: 1px solid var(--obsidian-border) !important;
     color: var(--obsidian-text) !important;
     border-radius: var(--obsidian-radius-sm) !important;
 }
@@ -590,133 +625,156 @@ input:focus, textarea:focus, select:focus, .form-control:focus {
     background: var(--obsidian-input-focus) !important;
     border-color: var(--obsidian-primary) !important;
     box-shadow: 0 0 0 2px var(--obsidian-primary-subtle) !important;
+    outline: none !important;
 }
 
 label { color: var(--obsidian-text) !important; }
-.help-block, .form-text { color: var(--obsidian-text-muted) !important; }
+.help-block, .form-text, .form-help, small { color: var(--obsidian-text-muted) !important; }
 
 /* ---- Tables ---- */
-table, .table { background: var(--obsidian-surface) !important; color: var(--obsidian-text) !important; }
-thead th, .table th { background: var(--obsidian-surface-2) !important; color: var(--obsidian-text-heading) !important; border-bottom-color: var(--obsidian-border) !important; }
+table, .table { background: var(--obsidian-surface) !important; color: var(--obsidian-text) !important; border-color: var(--obsidian-border) !important; }
+thead th, .table th, thead td { background: var(--obsidian-surface-2) !important; color: var(--obsidian-text-heading) !important; border-bottom: 1px solid var(--obsidian-border) !important; }
 tbody td, .table td { border-color: var(--obsidian-border) !important; color: var(--obsidian-text) !important; }
 tbody tr:hover, .table tr:hover { background: var(--obsidian-surface-2) !important; }
+tbody tr:nth-child(even), .table-striped > tbody > tr:nth-child(even) { background: var(--obsidian-surface); }
 
 /* ---- Modals ---- */
-.modal-content { background: var(--obsidian-modal-bg) !important; border-color: var(--obsidian-border) !important; color: var(--obsidian-text) !important; }
+.modal-content { background: var(--obsidian-modal-bg) !important; border: 1px solid var(--obsidian-border) !important; color: var(--obsidian-text) !important; border-radius: var(--obsidian-radius-lg) !important; }
 .modal-header { border-bottom-color: var(--obsidian-border) !important; }
-.modal-header .close, .modal-header .close span { color: var(--obsidian-text) !important; }
+.modal-header .close, .modal-header .close span, .modal-header button.close { color: var(--obsidian-text) !important; opacity: 0.8 !important; }
 .modal-footer { border-top-color: var(--obsidian-border) !important; }
-.modal-backdrop, .modal-backdrop.in, .modal-backdrop.show { background: rgba(0,0,0,0.7) !important; }
+.modal-backdrop, .modal-backdrop.in { background: rgba(0,0,0,0.75) !important; }
+.modal-title { color: var(--obsidian-text-heading) !important; }
 
 /* ---- Navbar ---- */
-.navbar, .main-header .navbar, [class*='navbar'] {
-    background: var(--obsidian-navbar) !important;
-    border-bottom-color: var(--obsidian-navbar-border) !important;
-}
-.navbar a, .navbar .nav-link, .navbar-brand { color: var(--obsidian-text) !important; }
-.navbar a:hover { color: var(--obsidian-primary) !important; }
-
-/* ---- Sidebar ---- */
-.main-sidebar, .sidebar, [class*='sidebar'] {
-    background: var(--obsidian-sidebar) !important;
-    border-right-color: var(--obsidian-sidebar-border) !important;
-}
-.sidebar a, .sidebar .nav-link, .sidebar-menu a { color: var(--obsidian-text) !important; }
-.sidebar a:hover, .sidebar-menu li:hover > a { background: var(--obsidian-sidebar-item-hover) !important; color: var(--obsidian-primary) !important; }
-.sidebar-menu .active > a, .sidebar .active > a { background: var(--obsidian-sidebar-item-active) !important; color: var(--obsidian-primary) !important; }
-
-/* ---- Content Area ---- */
-.content-wrapper, .content, [class*='content-wrapper'] { background: var(--obsidian-background) !important; color: var(--obsidian-text) !important; }
-
-/* ---- Breadcrumbs ---- */
-.breadcrumb { background: var(--obsidian-surface) !important; }
-.breadcrumb a { color: var(--obsidian-primary) !important; }
-.breadcrumb > .active { color: var(--obsidian-text-muted) !important; }
-
-/* ---- Alerts ---- */
-.alert { background: var(--obsidian-surface) !important; border-color: var(--obsidian-border) !important; color: var(--obsidian-text) !important; }
-.alert-success { background: var(--obsidian-success-subtle, rgba(74,222,128,.12)) !important; border-color: var(--obsidian-success) !important; }
-.alert-info { background: var(--obsidian-info-subtle, rgba(56,189,248,.12)) !important; border-color: var(--obsidian-info) !important; }
-.alert-warning { background: var(--obsidian-warning-subtle, rgba(250,204,21,.12)) !important; border-color: var(--obsidian-warning) !important; }
-.alert-danger { background: var(--obsidian-danger-subtle, rgba(248,113,113,.12)) !important; border-color: var(--obsidian-danger) !important; }
-
-/* ---- Code / Pre ---- */
-code { background: var(--obsidian-code-bg) !important; color: var(--obsidian-accent) !important; padding: 2px 6px; border-radius: 4px; }
-pre { background: var(--obsidian-code-bg) !important; color: var(--obsidian-text) !important; border-color: var(--obsidian-border) !important; }
-
-/* ---- Badges / Labels ---- */
-.badge, .label { background: var(--obsidian-primary-subtle) !important; color: var(--obsidian-primary) !important; }
-
-/* ---- Pagination ---- */
-.pagination > li > a, .pagination > li > span { background: var(--obsidian-surface) !important; border-color: var(--obsidian-border) !important; color: var(--obsidian-text) !important; }
-.pagination > .active > a, .pagination > .active > span { background: var(--obsidian-primary) !important; color: #fff !important; }
-
-/* ---- Wells ---- */
-.well { background: var(--obsidian-surface) !important; border-color: var(--obsidian-border) !important; }
-
-/* ---- Progress bars ---- */
-.progress { background: var(--obsidian-surface-2) !important; }
-.progress-bar { background: var(--obsidian-primary) !important; }
-
-/* ---- Dropdowns ---- */
-.dropdown-menu { background: var(--obsidian-surface) !important; border-color: var(--obsidian-border) !important; }
-.dropdown-menu > li > a { color: var(--obsidian-text) !important; }
-.dropdown-menu > li > a:hover { background: var(--obsidian-surface-2) !important; color: var(--obsidian-primary) !important; }
-/* ==== obsidian-layouts.css ==== */
-/* =============================================================================
-   obsidianTheme - Layout Overrides (targets actual Pterodactyl layout)
-   ============================================================================= */
-
-/* ---- App Shell ---- */
-#app, .app, .wrapper, #container, .container-fluid {
-    background: var(--obsidian-background) !important;
-    color: var(--obsidian-text) !important;
-}
-
-/* ---- Main Header ---- */
-.main-header, header.main-header {
+.navbar, .main-header .navbar, [class*="navbar"], header nav, [class*="topbar"], [class*="top-bar"] {
     background: var(--obsidian-navbar) !important;
     border-bottom: 1px solid var(--obsidian-navbar-border) !important;
 }
+.navbar a, .navbar .nav-link, .navbar-brand, .nav > li > a { color: var(--obsidian-text) !important; }
+.navbar a:hover, .nav > li > a:hover { color: var(--obsidian-primary) !important; }
 
-/* ---- Logo ---- */
-.logo, .main-header .logo, .navbar-brand {
-    background: var(--obsidian-navbar) !important;
-    color: var(--obsidian-text) !important;
+/* ---- Sidebar ---- */
+.main-sidebar, .sidebar, [class*="sidebar"], aside[class*="sidebar"], .main-menu, [class*="sidenav"] {
+    background: var(--obsidian-sidebar) !important;
+    border-right: 1px solid var(--obsidian-sidebar-border) !important;
 }
-.logo:hover { background: var(--obsidian-surface) !important; }
+.sidebar a, .sidebar .nav-link, .sidebar-menu a, .sidebar-menu > li > a { color: var(--obsidian-text) !important; }
+.sidebar-menu > li:hover > a, .sidebar-menu > li > a:hover { background: var(--obsidian-sidebar-item-hover) !important; color: var(--obsidian-primary) !important; }
+.sidebar-menu > li.active > a, .sidebar-menu > li.active:hover > a { background: var(--obsidian-sidebar-item-active) !important; color: var(--obsidian-primary) !important; }
+.sidebar-menu .treeview-menu { background: var(--obsidian-surface) !important; }
+.sidebar-menu .treeview-menu > li > a { color: var(--obsidian-text-muted) !important; }
+.sidebar-menu .treeview-menu > li > a:hover { color: var(--obsidian-text) !important; }
 
-/* ---- Sidebar Menu ---- */
-.sidebar-menu > li > a { color: var(--obsidian-text) !important; }
-.sidebar-menu > li:hover > a { background: var(--obsidian-sidebar-item-hover) !important; color: var(--obsidian-primary) !important; }
-.sidebar-menu > li.active > a { background: var(--obsidian-sidebar-item-active) !important; color: var(--obsidian-primary) !important; }
+/* ---- Breadcrumbs ---- */
+.breadcrumb { background: var(--obsidian-surface) !important; border-radius: var(--obsidian-radius-sm) !important; }
+.breadcrumb a { color: var(--obsidian-primary) !important; }
+.breadcrumb > .active, .breadcrumb > li.active { color: var(--obsidian-text-muted) !important; }
 
-/* ---- Content Header ---- */
-.content-header h1 { color: var(--obsidian-text-heading) !important; }
-.content-header .breadcrumb a { color: var(--obsidian-primary) !important; }
+/* ---- Alerts ---- */
+.alert { background: var(--obsidian-surface) !important; border: 1px solid var(--obsidian-border) !important; border-left-width: 4px !important; color: var(--obsidian-text) !important; border-radius: var(--obsidian-radius-sm) !important; }
+.alert-success { border-left-color: var(--obsidian-success) !important; background: var(--obsidian-success-subtle, rgba(74,222,128,.1)) !important; }
+.alert-info    { border-left-color: var(--obsidian-info)    !important; background: var(--obsidian-info-subtle, rgba(56,189,248,.1)) !important; }
+.alert-warning { border-left-color: var(--obsidian-warning) !important; background: var(--obsidian-warning-subtle, rgba(250,204,21,.1)) !important; }
+.alert-danger  { border-left-color: var(--obsidian-danger)  !important; background: var(--obsidian-danger-subtle, rgba(248,113,113,.1)) !important; }
+.alert .close, .alert button.close { color: inherit !important; }
 
-/* ---- Console (Server Terminal) ---- */
-.console, .terminal, [class*='console'], [class*='terminal'], #terminal, .xterm {
+/* ---- Code / Pre ---- */
+code, kbd { background: var(--obsidian-code-bg) !important; color: var(--obsidian-accent) !important; padding: 2px 6px !important; border-radius: 4px !important; font-family: var(--obsidian-font-mono) !important; }
+pre { background: var(--obsidian-code-bg) !important; color: var(--obsidian-text) !important; border: 1px solid var(--obsidian-border) !important; border-radius: var(--obsidian-radius-md) !important; padding: 16px !important; }
+
+/* ---- Badges / Labels ---- */
+.badge, .label { background: var(--obsidian-primary-subtle) !important; color: var(--obsidian-primary) !important; border-radius: 999px !important; padding: 2px 10px !important; }
+
+/* ---- Pagination ---- */
+.pagination > li > a, .pagination > li > span { background: var(--obsidian-surface) !important; border-color: var(--obsidian-border) !important; color: var(--obsidian-text) !important; }
+.pagination > .active > a, .pagination > .active > span, .pagination > li.active > a { background: var(--obsidian-primary) !important; color: #fff !important; border-color: var(--obsidian-primary) !important; }
+.pagination > .disabled > span, .pagination > .disabled > a { background: var(--obsidian-surface) !important; color: var(--obsidian-text-muted) !important; }
+
+/* ---- Wells ---- */
+.well { background: var(--obsidian-surface) !important; border-color: var(--obsidian-border) !important; border-radius: var(--obsidian-radius-md) !important; box-shadow: none !important; }
+
+/* ---- Progress bars ---- */
+.progress { background: var(--obsidian-surface-2) !important; border-radius: 999px !important; }
+.progress-bar { background: var(--obsidian-primary) !important; }
+
+/* ---- Dropdowns ---- */
+.dropdown-menu { background: var(--obsidian-surface) !important; border: 1px solid var(--obsidian-border) !important; border-radius: var(--obsidian-radius-md) !important; box-shadow: var(--obsidian-shadow-lg) !important; }
+.dropdown-menu > li > a, .dropdown-menu > li > button { color: var(--obsidian-text) !important; }
+.dropdown-menu > li > a:hover, .dropdown-menu > li > button:hover { background: var(--obsidian-surface-2) !important; color: var(--obsidian-primary) !important; }
+.dropdown-header { color: var(--obsidian-text-muted) !important; }
+.dropdown-divider, .divider { border-color: var(--obsidian-border) !important; background: var(--obsidian-border) !important; }
+
+/* ---- Tooltips ---- */
+.tooltip-inner { background: var(--obsidian-tooltip-bg, var(--obsidian-surface-3)) !important; color: var(--obsidian-text) !important; border-radius: var(--obsidian-radius-sm) !important; }
+.tooltip-arrow, .tooltip .arrow { border-top-color: var(--obsidian-surface-3) !important; }
+
+/* ---- Popovers ---- */
+.popover { background: var(--obsidian-surface) !important; border-color: var(--obsidian-border) !important; border-radius: var(--obsidian-radius-md) !important; }
+.popover-title { background: var(--obsidian-surface-2) !important; border-bottom-color: var(--obsidian-border) !important; color: var(--obsidian-text-heading) !important; }
+
+/* ---- Nav tabs ---- */
+.nav-tabs { border-bottom-color: var(--obsidian-border) !important; }
+.nav-tabs > li > a { color: var(--obsidian-text-muted) !important; border-color: transparent !important; }
+.nav-tabs > li > a:hover { background: var(--obsidian-surface) !important; color: var(--obsidian-text) !important; border-color: var(--obsidian-border) !important; }
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus { background: var(--obsidian-card) !important; color: var(--obsidian-primary) !important; border-color: var(--obsidian-border) !important; border-bottom-color: transparent !important; }
+.tab-content { background: var(--obsidian-card) !important; border: 1px solid var(--obsidian-border) !important; border-top: none !important; padding: 16px !important; }
+
+/* ---- Console / Terminal ---- */
+.console, .terminal, [class*="console"], #terminal, .xterm, .xterm-screen, .xterm-viewport {
     background: var(--obsidian-console-bg) !important;
     color: var(--obsidian-text) !important;
     border-color: var(--obsidian-border) !important;
 }
-.xterm-viewport, .xterm-screen { background: var(--obsidian-console-bg) !important; }
+.xterm-rows, .xterm-helpers { color: var(--obsidian-text) !important; }
 
 /* ---- File Manager ---- */
-.file-manager, [class*='file-manager'], .fm-table th { background: var(--obsidian-surface) !important; }
-.fm-table td { border-color: var(--obsidian-border) !important; }
-.fm-table tr:hover { background: var(--obsidian-surface-2) !important; }
+.fm-table th, .file-manager th { background: var(--obsidian-surface-2) !important; }
+.fm-table td, .file-manager td { border-color: var(--obsidian-border) !important; }
+.fm-table tr:hover, .file-manager tr:hover { background: var(--obsidian-surface-2) !important; }
 
-/* ---- Server List (Dashboard) ---- */
-.server-card, [class*='server-card'], [class*='server-row'] {
-    background: var(--obsidian-card) !important;
-    border-color: var(--obsidian-border) !important;
+/* ---- React Select / Custom selects ---- */
+[class*='select__control'], [class*='react-select__control'] { background: var(--obsidian-input-bg) !important; border-color: var(--obsidian-border) !important; }
+[class*='select__menu'], [class*='react-select__menu'] { background: var(--obsidian-surface) !important; border-color: var(--obsidian-border) !important; }
+[class*='select__option'], [class*='react-select__option'] { background: var(--obsidian-surface) !important; color: var(--obsidian-text) !important; }
+[class*='select__option--is-focused'], [class*='react-select__option--is-focused'] { background: var(--obsidian-surface-2) !important; }
+[class*='select__option--is-selected'], [class*='react-select__option--is-selected'] { background: var(--obsidian-primary-subtle) !important; color: var(--obsidian-primary) !important; }
+[class*='select__single-value'], [class*='react-select__single-value'] { color: var(--obsidian-text) !important; }
+[class*='select__input'], [class*='react-select__input'] { color: var(--obsidian-text) !important; }
+
+/* ---- Tooltips (React) ---- */
+[class*='tooltip'], [class*='Tooltip'] { --tooltip-bg: var(--obsidian-tooltip-bg, var(--obsidian-surface-3)); }
+/* ==== obsidian-layouts.css ==== */
+/* =============================================================================
+   obsidianTheme - Layout Overrides
+   ============================================================================= */
+
+/* ---- App Shell ---- */
+#app, .app, .wrapper, #container, .container-fluid, [class*="app-shell"], [class*="app-wrapper"] {
+    background: var(--obsidian-background) !important;
+    color: var(--obsidian-text) !important;
 }
-.server-card:hover, [class*='server-row']:hover { background: var(--obsidian-card-hover) !important; }
+
+/* ---- Content wrapper ---- */
+.content-wrapper, .content, [class*="content-wrapper"], [class*="main-content"] {
+    background: var(--obsidian-background) !important;
+    color: var(--obsidian-text) !important;
+}
+
+/* ---- Content header ---- */
+.content-header h1, .page-title, h1.page-header { color: var(--obsidian-text-heading) !important; }
+.content-header .breadcrumb a, .breadcrumb a { color: var(--obsidian-primary) !important; }
 
 /* ---- Responsive ---- */
-@media (max-width: 768px) {
-    .main-sidebar { transform: translateX(-100%); }
-    .sidebar-open .main-sidebar { transform: translateX(0); }
+@media (max-width: 767px) {
+    .main-sidebar { transform: translate(-100%, 0); }
+    .sidebar-open .main-sidebar { transform: translate(0, 0); }
+}
+
+@media (min-width: 768px) {
+    .sidebar-collapse .main-sidebar { width: 0; }
+}
+
+@media (max-width: 480px) {
+    .content-header h1 { font-size: 1.5rem; }
 }
