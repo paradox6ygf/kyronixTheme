@@ -125,14 +125,7 @@
     transform: none;
 }
 
-/* Level: HIGH — additional effects */
-[data-obsidian-animation="high"] .obsidian-sidebar__item--active {
-    animation: obsidian-glow-pulse 3s ease-in-out infinite;
-}
-
-[data-obsidian-animation="high"] .obsidian-badge--pulsing .obsidian-badge__dot {
-    animation: obsidian-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
+/* Level: HIGH — subtle emphasis only (no glow pulses) */
 
 /* ─────────────────────────────────────────────
    MICRO-INTERACTIONS
@@ -158,17 +151,8 @@
     justify-content: center;
 }
 
+/* Status indicator — static dot, no ping ring */
 .obsidian-status-indicator::before {
-    content: '';
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    background: currentColor;
-    opacity: 0;
-    animation: obsidian-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-[data-obsidian-animation="off"] .obsidian-status-indicator::before {
     display: none;
 }
 

@@ -1,33 +1,16 @@
 /* =============================================================================
-   obsidianTheme - Layout Overrides
+   obsidianTheme - Layout (minimal, non-destructive)
+   The panel's own responsive layout is preserved untouched.
    ============================================================================= */
 
-/* ---- App Shell ---- */
-#app, .app, .wrapper, #container, .container-fluid, [class*="app-shell"], [class*="app-wrapper"] {
-    background: var(--obsidian-background) !important;
-    color: var(--obsidian-text) !important;
+/* Nothing structural. Spacing/typography tweaks only, driven by density tokens
+   applied via the customizer. Safe on every screen size 320px - 8K. */
+
+@media (min-width: 2560px) {
+    body { font-size: 1.0625rem; }
 }
 
-/* ---- Content wrapper ---- */
-.content-wrapper, .content, [class*="content-wrapper"], [class*="main-content"] {
-    background: var(--obsidian-background) !important;
-    color: var(--obsidian-text) !important;
-}
-
-/* ---- Content header ---- */
-.content-header h1, .page-title, h1.page-header { color: var(--obsidian-text-heading) !important; }
-.content-header .breadcrumb a, .breadcrumb a { color: var(--obsidian-primary) !important; }
-
-/* ---- Responsive ---- */
-@media (max-width: 767px) {
-    .main-sidebar { transform: translate(-100%, 0); }
-    .sidebar-open .main-sidebar { transform: translate(0, 0); }
-}
-
-@media (min-width: 768px) {
-    .sidebar-collapse .main-sidebar { width: 0; }
-}
-
-@media (max-width: 480px) {
-    .content-header h1 { font-size: 1.5rem; }
+@media (max-width: 640px) {
+    h1 { font-size: 1.375rem; }
+    h2 { font-size: 1.125rem; }
 }

@@ -14,56 +14,56 @@
     --obsidian-hue-accent:        258;
 
     /* ── Primary Brand Colors ── */
-    --obsidian-primary:           hsl(222, 70%, 58%);
-    --obsidian-primary-hover:     hsl(222, 70%, 65%);
-    --obsidian-primary-active:    hsl(222, 70%, 50%);
-    --obsidian-primary-subtle:    hsl(222, 70%, 58% / 0.12);
-    --obsidian-primary-border:    hsl(222, 70%, 58% / 0.30);
+    --obsidian-primary:           hsl(80, 42%, 58%);
+    --obsidian-primary-hover:     hsl(80, 42%, 65%);
+    --obsidian-primary-active:    hsl(80, 42%, 50%);
+    --obsidian-primary-subtle:    hsl(80, 42%, 58% / 0.12);
+    --obsidian-primary-border:    hsl(80, 42%, 58% / 0.30);
     --obsidian-primary-foreground:hsl(0, 0%, 100%);
 
     /* ── Secondary ── */
-    --obsidian-secondary:         hsl(258, 60%, 62%);
-    --obsidian-secondary-hover:   hsl(258, 60%, 70%);
-    --obsidian-secondary-subtle:  hsl(258, 60%, 62% / 0.12);
+    --obsidian-secondary:         hsl(72, 30%, 62%);
+    --obsidian-secondary-hover:   hsl(72, 30%, 70%);
+    --obsidian-secondary-subtle:  hsl(72, 30%, 62% / 0.12);
 
     /* ── Accent ── */
-    --obsidian-accent:            hsl(190, 90%, 50%);
-    --obsidian-accent-hover:      hsl(190, 90%, 58%);
-    --obsidian-accent-subtle:     hsl(190, 90%, 50% / 0.12);
+    --obsidian-accent:            hsl(70, 35%, 50%);
+    --obsidian-accent-hover:      hsl(70, 35%, 58%);
+    --obsidian-accent-subtle:     hsl(70, 35%, 50% / 0.12);
 
     /* ── Background Hierarchy ── */
-    --obsidian-background:        hsl(220, 18%, 9%);
-    --obsidian-surface:           hsl(220, 16%, 12%);
-    --obsidian-surface-2:         hsl(220, 15%, 15%);
-    --obsidian-surface-3:         hsl(220, 14%, 18%);
-    --obsidian-card:              hsl(220, 15%, 13%);
-    --obsidian-card-hover:        hsl(220, 15%, 16%);
+    --obsidian-background:        hsl(80, 18%, 9%);
+    --obsidian-surface:           hsl(80, 16%, 12%);
+    --obsidian-surface-2:         hsl(80, 15%, 15%);
+    --obsidian-surface-3:         hsl(80, 14%, 18%);
+    --obsidian-card:              hsl(80, 15%, 13%);
+    --obsidian-card-hover:        hsl(80, 15%, 16%);
 
     /* ── Sidebar & Navigation ── */
-    --obsidian-sidebar:           hsl(220, 20%, 10%);
-    --obsidian-sidebar-item-hover:hsl(220, 16%, 15%);
-    --obsidian-sidebar-item-active:hsl(222, 70%, 58% / 0.15);
-    --obsidian-sidebar-border:    hsl(220, 16%, 16%);
-    --obsidian-navbar:            hsl(220, 18%, 10%);
-    --obsidian-navbar-border:     hsl(220, 16%, 15%);
+    --obsidian-sidebar:           hsl(80, 20%, 10%);
+    --obsidian-sidebar-item-hover:hsl(80, 16%, 15%);
+    --obsidian-sidebar-item-active:hsl(80, 42%, 58% / 0.15);
+    --obsidian-sidebar-border:    hsl(80, 16%, 16%);
+    --obsidian-navbar:            hsl(80, 18%, 10%);
+    --obsidian-navbar-border:     hsl(80, 16%, 15%);
 
     /* ── Text ── */
-    --obsidian-text:              hsl(215, 20%, 92%);
-    --obsidian-text-secondary:    hsl(215, 12%, 65%);
-    --obsidian-text-muted:        hsl(215, 10%, 45%);
-    --obsidian-text-disabled:     hsl(215, 8%, 35%);
-    --obsidian-text-inverse:      hsl(220, 18%, 9%);
+    --obsidian-text:              hsl(75, 20%, 92%);
+    --obsidian-text-secondary:    hsl(75, 12%, 65%);
+    --obsidian-text-muted:        hsl(75, 10%, 45%);
+    --obsidian-text-disabled:     hsl(75, 8%, 35%);
+    --obsidian-text-inverse:      hsl(80, 18%, 9%);
     --obsidian-text-on-primary:   hsl(0, 0%, 100%);
-    --obsidian-text-heading:      hsl(215, 25%, 96%);
-    --obsidian-text-link:         hsl(222, 70%, 68%);
-    --obsidian-text-link-hover:   hsl(222, 70%, 78%);
-    --obsidian-text-code:         hsl(190, 90%, 60%);
+    --obsidian-text-heading:      hsl(75, 25%, 96%);
+    --obsidian-text-link:         hsl(80, 42%, 68%);
+    --obsidian-text-link-hover:   hsl(80, 42%, 78%);
+    --obsidian-text-code:         hsl(70, 35%, 60%);
 
     /* ── Borders ── */
-    --obsidian-border:            hsl(220, 14%, 20%);
-    --obsidian-border-subtle:     hsl(220, 14%, 16%);
-    --obsidian-border-strong:     hsl(220, 14%, 28%);
-    --obsidian-border-focus:      hsl(222, 70%, 58%);
+    --obsidian-border:            hsl(80, 14%, 20%);
+    --obsidian-border-subtle:     hsl(80, 14%, 16%);
+    --obsidian-border-strong:     hsl(80, 14%, 28%);
+    --obsidian-border-focus:      hsl(80, 42%, 58%);
     --obsidian-border-error:      hsl(358, 70%, 55%);
 
     /* ── Semantic Status Colors ── */
@@ -92,44 +92,44 @@
     --obsidian-info-text:         hsl(204, 80%, 68%);
 
     /* ── Inputs ── */
-    --obsidian-input-bg:          hsl(220, 16%, 11%);
-    --obsidian-input-bg-focus:    hsl(220, 16%, 13%);
-    --obsidian-input-border:      hsl(220, 14%, 22%);
-    --obsidian-input-border-focus:hsl(222, 70%, 58%);
-    --obsidian-input-placeholder: hsl(215, 10%, 40%);
-    --obsidian-input-text:        hsl(215, 20%, 92%);
+    --obsidian-input-bg:          hsl(80, 16%, 11%);
+    --obsidian-input-bg-focus:    hsl(80, 16%, 13%);
+    --obsidian-input-border:      hsl(80, 14%, 22%);
+    --obsidian-input-border-focus:hsl(80, 42%, 58%);
+    --obsidian-input-placeholder: hsl(75, 10%, 40%);
+    --obsidian-input-text:        hsl(75, 20%, 92%);
 
     /* ── Buttons ── */
     --obsidian-button-radius:     6px;
 
     /* ── Console / Terminal ── */
-    --obsidian-console-bg:        hsl(220, 22%, 8%);
+    --obsidian-console-bg:        hsl(80, 22%, 8%);
     --obsidian-console-text:      hsl(120, 40%, 72%);
-    --obsidian-console-cursor:    hsl(190, 90%, 50%);
-    --obsidian-console-selection: hsl(222, 70%, 58% / 0.30);
-    --obsidian-console-border:    hsl(220, 16%, 15%);
+    --obsidian-console-cursor:    hsl(70, 35%, 50%);
+    --obsidian-console-selection: hsl(80, 42%, 58% / 0.30);
+    --obsidian-console-border:    hsl(80, 16%, 15%);
 
     /* ── Scrollbar ── */
-    --obsidian-scrollbar-track:   hsl(220, 16%, 10%);
-    --obsidian-scrollbar-thumb:   hsl(220, 14%, 22%);
-    --obsidian-scrollbar-hover:   hsl(220, 14%, 30%);
+    --obsidian-scrollbar-track:   hsl(80, 16%, 10%);
+    --obsidian-scrollbar-thumb:   hsl(80, 14%, 22%);
+    --obsidian-scrollbar-hover:   hsl(80, 14%, 30%);
 
     /* ── Shadows ── */
-    --obsidian-shadow-sm:         0 1px 3px hsl(220, 30%, 4% / 0.40);
-    --obsidian-shadow-md:         0 4px 12px hsl(220, 30%, 4% / 0.50);
-    --obsidian-shadow-lg:         0 8px 32px hsl(220, 30%, 4% / 0.60);
-    --obsidian-shadow-xl:         0 16px 48px hsl(220, 30%, 4% / 0.70);
-    --obsidian-shadow-glow:       0 0 20px hsl(222, 70%, 58% / 0.20);
-    --obsidian-shadow-glow-sm:    0 0 8px hsl(222, 70%, 58% / 0.15);
+    --obsidian-shadow-sm:         0 1px 3px hsl(80, 30%, 4% / 0.40);
+    --obsidian-shadow-md:         0 4px 12px hsl(80, 30%, 4% / 0.50);
+    --obsidian-shadow-lg:         0 8px 32px hsl(80, 30%, 4% / 0.60);
+    --obsidian-shadow-xl:         0 16px 48px hsl(80, 30%, 4% / 0.70);
+    --obsidian-shadow-glow:       0 0 20px hsl(80, 42%, 58% / 0.20);
+    --obsidian-shadow-glow-sm:    0 0 8px hsl(80, 42%, 58% / 0.15);
 
     /* ── Overlays ── */
-    --obsidian-overlay:           hsl(220, 30%, 5% / 0.75);
-    --obsidian-overlay-light:     hsl(220, 30%, 5% / 0.50);
+    --obsidian-overlay:           hsl(80, 30%, 5% / 0.75);
+    --obsidian-overlay-light:     hsl(80, 30%, 5% / 0.50);
 
     /* ── Gradients ── */
-    --obsidian-gradient-primary:  linear-gradient(135deg, hsl(222, 70%, 52%), hsl(258, 60%, 58%));
-    --obsidian-gradient-surface:  linear-gradient(180deg, hsl(220, 16%, 14%), hsl(220, 16%, 11%));
-    --obsidian-gradient-sidebar:  linear-gradient(180deg, hsl(220, 22%, 11%), hsl(220, 20%, 9%));
+    --obsidian-gradient-primary:  linear-gradient(135deg, hsl(80, 42%, 52%), hsl(72, 30%, 58%));
+    --obsidian-gradient-surface:  linear-gradient(180deg, hsl(80, 16%, 14%), hsl(80, 16%, 11%));
+    --obsidian-gradient-sidebar:  linear-gradient(180deg, hsl(80, 22%, 11%), hsl(80, 20%, 9%));
 
     /* ── Layout Dimensions ── */
     --obsidian-sidebar-width:     256px;
@@ -224,54 +224,54 @@
 /* ===== LIGHT THEME ===== */
 [data-obsidian-theme="light"] {
 
-    --obsidian-background:        hsl(210, 25%, 97%);
+    --obsidian-background:        hsl(75, 25%, 97%);
     --obsidian-surface:           hsl(0, 0%, 100%);
-    --obsidian-surface-2:         hsl(210, 20%, 95%);
-    --obsidian-surface-3:         hsl(210, 18%, 91%);
+    --obsidian-surface-2:         hsl(75, 20%, 95%);
+    --obsidian-surface-3:         hsl(75, 18%, 91%);
     --obsidian-card:              hsl(0, 0%, 100%);
-    --obsidian-card-hover:        hsl(210, 20%, 98%);
+    --obsidian-card-hover:        hsl(75, 20%, 98%);
 
-    --obsidian-sidebar:           hsl(220, 20%, 16%);
-    --obsidian-sidebar-item-hover:hsl(220, 18%, 22%);
-    --obsidian-sidebar-item-active:hsl(222, 70%, 58% / 0.20);
-    --obsidian-sidebar-border:    hsl(220, 16%, 22%);
+    --obsidian-sidebar:           hsl(80, 20%, 16%);
+    --obsidian-sidebar-item-hover:hsl(80, 18%, 22%);
+    --obsidian-sidebar-item-active:hsl(80, 42%, 58% / 0.20);
+    --obsidian-sidebar-border:    hsl(80, 16%, 22%);
     --obsidian-navbar:            hsl(0, 0%, 100%);
-    --obsidian-navbar-border:     hsl(210, 16%, 90%);
+    --obsidian-navbar-border:     hsl(75, 16%, 90%);
 
-    --obsidian-text:              hsl(220, 20%, 14%);
-    --obsidian-text-secondary:    hsl(220, 12%, 38%);
-    --obsidian-text-muted:        hsl(220, 10%, 55%);
-    --obsidian-text-disabled:     hsl(220, 8%, 68%);
+    --obsidian-text:              hsl(80, 20%, 14%);
+    --obsidian-text-secondary:    hsl(80, 12%, 38%);
+    --obsidian-text-muted:        hsl(80, 10%, 55%);
+    --obsidian-text-disabled:     hsl(80, 8%, 68%);
     --obsidian-text-inverse:      hsl(0, 0%, 100%);
-    --obsidian-text-heading:      hsl(220, 25%, 10%);
-    --obsidian-text-link:         hsl(222, 70%, 48%);
-    --obsidian-text-link-hover:   hsl(222, 70%, 40%);
-    --obsidian-text-code:         hsl(258, 60%, 50%);
+    --obsidian-text-heading:      hsl(80, 25%, 10%);
+    --obsidian-text-link:         hsl(80, 42%, 48%);
+    --obsidian-text-link-hover:   hsl(80, 42%, 40%);
+    --obsidian-text-code:         hsl(72, 30%, 50%);
 
-    --obsidian-border:            hsl(210, 16%, 85%);
-    --obsidian-border-subtle:     hsl(210, 16%, 91%);
-    --obsidian-border-strong:     hsl(210, 16%, 72%);
+    --obsidian-border:            hsl(75, 16%, 85%);
+    --obsidian-border-subtle:     hsl(75, 16%, 91%);
+    --obsidian-border-strong:     hsl(75, 16%, 72%);
 
     --obsidian-input-bg:          hsl(0, 0%, 100%);
-    --obsidian-input-bg-focus:    hsl(210, 20%, 99%);
-    --obsidian-input-border:      hsl(210, 16%, 82%);
-    --obsidian-input-placeholder: hsl(220, 10%, 58%);
-    --obsidian-input-text:        hsl(220, 20%, 14%);
+    --obsidian-input-bg-focus:    hsl(75, 20%, 99%);
+    --obsidian-input-border:      hsl(75, 16%, 82%);
+    --obsidian-input-placeholder: hsl(80, 10%, 58%);
+    --obsidian-input-text:        hsl(80, 20%, 14%);
 
-    --obsidian-console-bg:        hsl(220, 18%, 12%);
+    --obsidian-console-bg:        hsl(80, 18%, 12%);
     --obsidian-console-text:      hsl(120, 40%, 72%);
 
-    --obsidian-shadow-sm:         0 1px 3px hsl(220, 20%, 60% / 0.15);
-    --obsidian-shadow-md:         0 4px 12px hsl(220, 20%, 60% / 0.20);
-    --obsidian-shadow-lg:         0 8px 32px hsl(220, 20%, 60% / 0.25);
-    --obsidian-shadow-xl:         0 16px 48px hsl(220, 20%, 60% / 0.30);
+    --obsidian-shadow-sm:         0 1px 3px hsl(80, 20%, 60% / 0.15);
+    --obsidian-shadow-md:         0 4px 12px hsl(80, 20%, 60% / 0.20);
+    --obsidian-shadow-lg:         0 8px 32px hsl(80, 20%, 60% / 0.25);
+    --obsidian-shadow-xl:         0 16px 48px hsl(80, 20%, 60% / 0.30);
 
-    --obsidian-scrollbar-track:   hsl(210, 20%, 93%);
-    --obsidian-scrollbar-thumb:   hsl(210, 14%, 78%);
-    --obsidian-scrollbar-hover:   hsl(210, 14%, 65%);
+    --obsidian-scrollbar-track:   hsl(75, 20%, 93%);
+    --obsidian-scrollbar-thumb:   hsl(75, 14%, 78%);
+    --obsidian-scrollbar-hover:   hsl(75, 14%, 65%);
 
-    --obsidian-overlay:           hsl(220, 20%, 30% / 0.60);
-    --obsidian-gradient-sidebar:  linear-gradient(180deg, hsl(220, 22%, 18%), hsl(220, 20%, 13%));
+    --obsidian-overlay:           hsl(80, 20%, 30% / 0.60);
+    --obsidian-gradient-sidebar:  linear-gradient(180deg, hsl(80, 22%, 18%), hsl(80, 20%, 13%));
 }
 
 /* ===== COMPACT DENSITY ===== */
