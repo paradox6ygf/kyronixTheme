@@ -37,10 +37,10 @@ export const ObsidianBootstrap: React.FC = () => {
     return (
         <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 9999, display: 'flex', alignItems: 'center', gap: '8px' }}>
             <button onClick={() => { window.location.hash = '#/account/customizer'; }} style={{
-                padding: '12px 20px', borderRadius: 'var(--obsidian-radius, 999px)', border: 'none',
-                background: 'linear-gradient(135deg, var(--obsidian-primary, #b5e48c), var(--obsidian-accent, #d9ed92))',
-                color: '#0d1117', fontWeight: 700, fontSize: '13px', cursor: 'pointer',
-                boxShadow: '0 4px 16px rgba(0,0,0,0.4)',
+                padding: '11px 18px', borderRadius: 'var(--obsidian-radius, 10px)', border: '1px solid var(--obsidian-border, #333)',
+                background: 'var(--obsidian-primary, #20344f)', color: 'var(--obsidian-text-heading, #f5f7fa)',
+                fontWeight: 600, fontSize: '13px', cursor: 'pointer',
+                boxShadow: '0 2px 10px rgba(0,0,0,0.35)',
             }}>Customize Obsidian</button>
             <button onClick={() => setVisible(false)} title="Hide" style={{
                 width: '28px', height: '28px', borderRadius: '50%', border: '1px solid var(--obsidian-border, #333)',

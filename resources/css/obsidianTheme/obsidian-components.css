@@ -1,10 +1,12 @@
 /* =============================================================================
-   obsidianTheme - Component Overrides (Pterodactyl 1.x React + Tailwind)
-   Strategy: recolor Tailwind utility classes exactly, by class name.
-   No wildcards, no layout/position/display changes - nothing can disappear.
+   obsidianTheme - Component Redesign (Pterodactyl 1.x React + Tailwind)
+   Targets the real, stable class names emitted by the panel (bg-neutral-*,
+   bg-gray-600 stat cards, xterm terminal, ChartBlock "group", etc).
+   Structural where safe, recolored where the DOM is hashed. No display:none,
+   no wildcard layout rules that could break React panels.
    ============================================================================= */
 
-/* ---- Page & container backgrounds (Pterodactyl dark palette) ---- */
+/* ---- Page & container surfaces ---- */
 .bg-neutral-900 { background-color: var(--obsidian-background) !important; }
 .bg-neutral-800 { background-color: var(--obsidian-surface) !important; }
 .bg-neutral-750,
@@ -16,10 +18,8 @@
 .text-neutral-50,
 .text-neutral-100,
 .text-neutral-200 { color: var(--obsidian-text-heading) !important; }
-
 .text-neutral-300,
 .text-neutral-400 { color: var(--obsidian-text) !important; }
-
 .text-neutral-500,
 .text-neutral-600 { color: var(--obsidian-text-muted) !important; }
 
@@ -29,46 +29,146 @@
 .border-neutral-500,
 .border-neutral-400 { border-color: var(--obsidian-border) !important; }
 
-/* ---- Form controls (recolor only) ---- */
-input, textarea, select {
+/* ---- Resource stat widgets (ServerDetailsBlock -> StatBlock)
+     Real DOM: StatBlock renders a hashed .stat_block with .icon, .status_bar. */
+[class*="stat_block"] {
+    background-color: var(--obsidian-card) !important;
+    border: 1px solid var(--obsidian-border) !important;
+    border-radius: var(--obsidian-radius, 12px) !important;
+    box-shadow: var(--obsidian-shadow-sm) !important;
+    padding: 0.75rem 0.875rem;
+    transition: transform var(--obsidian-transition), box-shadow var(--obsidian-transition);
+}
+[class*="stat_block"]:hover { transform: translateY(-1px); box-shadow: var(--obsidian-shadow-md); }
+[class*="stat_block"] [class*="icon"] {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background-color: var(--obsidian-primary-subtle);
+}
+[class*="stat_block"] [class*="icon"] svg { color: var(--obsidian-text-link); }
+[class*="stat_block"] [class*="icon"] [class*="gray-100"],
+[class*="stat_block"] [class*="icon"] [class*="gray-50"] { color: var(--obsidian-text-link) !important; }
+[class*="stat_block"] [class*="status_bar"] { height: 3px; border-radius: 3px; }
+[class*="stat_block"] .text-xs,
+[class*="stat_block"] .text-sm { color: var(--obsidian-text-muted) !important; }
+
+/* ---- Charts (ChartBlock) ---- */
+[class*="chart_container"] {
+    background-color: var(--obsidian-card) !important;
+    border: 1px solid var(--obsidian-border) !important;
+    border-radius: var(--obsidian-radius, 12px) !important;
+    box-shadow: var(--obsidian-shadow-sm) !important;
+}
+[class*="chart_container"] h3 { color: var(--obsidian-text-heading) !important; font-weight: 600; }
+[class*="chart_container"] .font-header { font-weight: 600; }
+
+/* ---- Console (xterm) — premium terminal frame ---- */
+.xterm .xterm-viewport,
+.xterm .xterm-screen { background-color: var(--obsidian-console-bg) !important; }
+.xterm .xterm-viewport,
+.xterm .xterm-screen,
+[class*="terminal"] {
+    border: 1px solid var(--obsidian-border) !important;
+    border-radius: var(--obsidian-radius, 10px) !important;
+    font-family: var(--obsidian-font-mono);
+}
+.xterm .xterm-row,
+.xterm span { color: var(--obsidian-console-text) !important; }
+
+/* Console command input + send icon */
+[class*="command_input"] {
+    background-color: var(--obsidian-input-bg) !important;
+    color: var(--obsidian-input-text) !important;
+    border: 1px solid var(--obsidian-input-border) !important;
+    border-radius: var(--obsidian-radius, 8px) !important;
+    padding: 0.5rem 0.75rem;
+    font-family: var(--obsidian-font-mono);
+}
+[class*="command_input"]::placeholder { color: var(--obsidian-input-placeholder) !important; }
+[class*="command_input"]:focus { border-color: var(--obsidian-border-focus); }
+/* ---- Power controls (Start / Restart / Stop)
+     Real DOM: PowerButtons container (space-x-2) > Button variants with hashed
+     CSS-module classes. Restyle the button system to a refined consistent
+     height with semantic colors, using the container+utility selectors. */
+.flex.sm\:justify-end.space-x-2 > button,
+.space-x-2 > button,
+button[class*="flex-1"] {
+    height: 40px;
+    border-radius: var(--obsidian-radius, 10px);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: background-color var(--obsidian-transition-fast),
+                border-color var(--obsidian-transition-fast),
+                transform var(--obsidian-transition-fast);
+}
+button[class*="flex-1"]:hover:not(:disabled) { transform: translateY(-1px); color: var(--obsidian-text); }
+button[class*="flex-1"]:disabled { opacity: 0.55; }
+
+/* Primary (Start) */
+[class*="button"][class*="primary"]:not([class*="text"]):not([class*="danger"]) {
+    background-color: var(--obsidian-success) !important;
+    border-color: var(--obsidian-success-border) !important;
+    color: var(--obsidian-text-inverse) !important;
+}
+[class*="button"][class*="danger"] {
+    background-color: var(--obsidian-danger) !important;
+    border-color: var(--obsidian-border-error) !important;
+    color: var(--obsidian-text-heading) !important;
+}
+[class*="button"][class*="text"] {
+    background-color: var(--obsidian-surface-2) !important;
+    border: 1px solid var(--obsidian-border) !important;
+    color: var(--obsidian-text) !important;
+}
+
+/* ---- Form controls ---- */
+input:not([type="range"]):not([type="color"]):not([type="checkbox"]):not([type="radio"]),
+textarea,
+select {
     background-color: var(--obsidian-input-bg);
     color: var(--obsidian-input-text);
     border-color: var(--obsidian-input-border);
+    border-radius: var(--obsidian-radius, 8px);
 }
-
-input::placeholder,
-textarea::placeholder { color: var(--obsidian-input-placeholder); }
-
+input::placeholder, textarea::placeholder { color: var(--obsidian-input-placeholder); }
 input:focus, textarea:focus, select:focus {
     border-color: var(--obsidian-border-focus);
     box-shadow: 0 0 0 1px var(--obsidian-primary-subtle);
     outline: none;
 }
 
-/* ---- Modals & overlays (Pterodactyl uses fixed overlay divs) ---- */
+/* ---- Data tables ---- */
+table { border-collapse: separate; border-spacing: 0; }
+thead { color: var(--obsidian-text-muted); }
+tbody tr:hover { background-color: var(--obsidian-card-hover); }
+th { font-weight: 600; letter-spacing: 0.02em; }
+
+/* ---- Modals & overlays ---- */
 .fixed.inset-0 { background-color: var(--obsidian-overlay) !important; }
-
-/* ---- Console / terminal (xterm) ---- */
-.xterm .xterm-viewport,
-.xterm .xterm-screen { background-color: var(--obsidian-console-bg) !important; }
-
-/* ---- Code blocks ---- */
-code, pre {
-    color: var(--obsidian-text-code);
-    background-color: var(--obsidian-surface);
+[role="dialog"] {
+    background-color: var(--obsidian-modal-bg) !important;
+    border: 1px solid var(--obsidian-border) !important;
+    border-radius: var(--obsidian-radius, 12px) !important;
+    box-shadow: var(--obsidian-shadow-lg) !important;
 }
 
+/* ---- Code blocks ---- */
+code, pre { color: var(--obsidian-text-code); background-color: var(--obsidian-surface); }
+
 /* ---- React-select (account API keys etc.) ---- */
-[class*='select__control'] { background-color: var(--obsidian-input-bg) !important; border-color: var(--obsidian-input-border) !important; }
-[class*='select__menu'] { background-color: var(--obsidian-surface) !important; }
+[class*='select__control'] { background-color: var(--obsidian-input-bg) !important; border-color: var(--obsidian-input-border) !important; border-radius: var(--obsidian-radius, 8px) !important; }
+[class*='select__menu'] { background-color: var(--obsidian-surface) !important; border: 1px solid var(--obsidian-border) !important; }
 [class*='select__option'] { background-color: var(--obsidian-surface) !important; color: var(--obsidian-text) !important; }
 [class*='select__option--is-focused'] { background-color: var(--obsidian-surface-2) !important; }
 [class*='select__single-value'] { color: var(--obsidian-text) !important; }
 
-/* ---- Soft shadows replace neon glows ---- */
+/* ---- Soft shadows (no neon) ---- */
 [class*='shadow-'] { box-shadow: var(--obsidian-shadow-md) !important; }
 
-/* ---- Responsive: modest typography scaling only ---- */
+/* ---- Responsive typography ---- */
 @media (max-width: 480px) {
     body { font-size: 0.9375rem; }
+    [class*="stat_block"] { padding: 0.5rem 0.625rem; }
+    [class*="stat_block"] [class*="icon"] { width: 34px; height: 34px; }
 }
+[class*="command_icon"] { color: var(--obsidian-text-link) !important; }
