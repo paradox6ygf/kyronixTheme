@@ -16,6 +16,7 @@ const ORDER = [
   'obsidian-animations.css',
   'obsidian-components.css',
   'obsidian-layouts.css',
+  'obsidian-studio.css',
 ];
 
 for (const f of ORDER) {

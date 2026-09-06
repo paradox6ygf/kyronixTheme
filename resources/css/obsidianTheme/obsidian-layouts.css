@@ -124,3 +124,88 @@
         padding: 0.5rem 0.875rem;
     }
 }
+
+/* ---- Power-button placement (Start / Restart / Stop) driven by preset ----
+     PowerButtons render inside a flex container. `data-obsidian-actions`
+     repositions them via flex justification so each theme places them
+     differently (top-right default, or top-left / belowName / aboveConsole). */
+
+/* --- belowName: dock to the left of the header instead of far right --- */
+[data-obsidian-actions="belowName"] .space-x-2,
+[data-obsidian-actions="belowName"] .flex.sm\:justify-end.space-x-2 {
+    justify-content: flex-start;
+}
+
+/* --- topLeft: align left (with a visible left margin from name block) --- */
+[data-obsidian-actions="topLeft"] .flex.sm\:justify-end.space-x-2 {
+    justify-content: flex-start;
+    margin-left: 0.75rem;
+}
+
+/* --- aboveConsole: pull the actions bar up against the console height --- */
+[data-obsidian-actions="aboveConsole"] .flex.sm\:justify-end.space-x-2 {
+    margin-top: 0.5rem;
+}
+
+/* ---- Console width by preset (safe: max-width + centering only) ---- */
+[data-obsidian-console="center"] [class*="terminal"] {
+    margin: 0 auto;
+    max-width: 960px;
+}
+[data-obsidian-console="left"] [class*="terminal"] {
+    max-width: 860px;
+}
+[data-obsidian-console="right"] [class*="terminal"] {
+    margin-left: auto;
+    max-width: 860px;
+}
+
+/* ---- Preset-specific animation & appearance refinement ----
+     data-obsidian-preset lets each theme tune its texture without neon. */
+
+/* Ember: warm status-bar entrance (high energy, no glow) */
+[data-obsidian-preset="ember"] [class*="status_bar"] {
+    animation: obsidian-fade-in var(--obsidian-transition) both;
+}
+
+/* Nightfall: remove card lifts entirely for calm (low motion) */
+[data-obsidian-preset="nightfall"] [class*="stat_block"]:hover {
+    transform: none;
+}
+
+/* Marine: crisp edges, lighter font weight on nav pills */
+[data-obsidian-preset="marine"] .w-full.bg-neutral-700 > div > a {
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+/* Aurora + Slate already carry their own spacing/scaling from tokens. */
+
+/* ---- LOGIN PAGE (Authentication/Container) ---------------------------
+     Each preset gives the login/auth pages a distinct frame via the same
+     design tokens. Safe: targets form/box wrappers only; never disables
+     login behaviour. */
+[data-obsidian-preset="ember"] form,
+[data-obsidian-preset="ember"] .box {
+    border: 1px solid var(--obsidian-border-error);
+    box-shadow: var(--obsidian-shadow-md);
+}
+[data-obsidian-preset="nightfall"] form,
+[data-obsidian-preset="nightfall"] .box {
+    border: 1px solid var(--obsidian-border-strong);
+    box-shadow: var(--obsidian-shadow-subtle, none);
+}
+[data-obsidian-preset="marine"] form,
+[data-obsidian-preset="marine"] .box {
+    border-radius: 4px;
+    border: 1px solid var(--obsidian-border);
+}
+[data-obsidian-preset="violet"] form,
+[data-obsidian-preset="violet"] .box {
+    border-radius: var(--obsidian-radius);
+    box-shadow: var(--obsidian-shadow-md);
+}
+[data-obsidian-preset="pebble"] form,
+[data-obsidian-preset="pebble"] .box {
+    border-radius: var(--obsidian-radius);
+}

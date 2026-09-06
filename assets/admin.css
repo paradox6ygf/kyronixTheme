@@ -827,3 +827,371 @@ code, pre { color: var(--obsidian-text-code); background-color: var(--obsidian-s
         padding: 0.5rem 0.875rem;
     }
 }
+
+/* ---- Power-button placement (Start / Restart / Stop) driven by preset ----
+     PowerButtons render inside a flex container. `data-obsidian-actions`
+     repositions them via flex justification so each theme places them
+     differently (top-right default, or top-left / belowName / aboveConsole). */
+
+/* --- belowName: dock to the left of the header instead of far right --- */
+[data-obsidian-actions="belowName"] .space-x-2,
+[data-obsidian-actions="belowName"] .flex.sm\:justify-end.space-x-2 {
+    justify-content: flex-start;
+}
+
+/* --- topLeft: align left (with a visible left margin from name block) --- */
+[data-obsidian-actions="topLeft"] .flex.sm\:justify-end.space-x-2 {
+    justify-content: flex-start;
+    margin-left: 0.75rem;
+}
+
+/* --- aboveConsole: pull the actions bar up against the console height --- */
+[data-obsidian-actions="aboveConsole"] .flex.sm\:justify-end.space-x-2 {
+    margin-top: 0.5rem;
+}
+
+/* ---- Console width by preset (safe: max-width + centering only) ---- */
+[data-obsidian-console="center"] [class*="terminal"] {
+    margin: 0 auto;
+    max-width: 960px;
+}
+[data-obsidian-console="left"] [class*="terminal"] {
+    max-width: 860px;
+}
+[data-obsidian-console="right"] [class*="terminal"] {
+    margin-left: auto;
+    max-width: 860px;
+}
+
+/* ---- Preset-specific animation & appearance refinement ----
+     data-obsidian-preset lets each theme tune its texture without neon. */
+
+/* Ember: warm status-bar entrance (high energy, no glow) */
+[data-obsidian-preset="ember"] [class*="status_bar"] {
+    animation: obsidian-fade-in var(--obsidian-transition) both;
+}
+
+/* Nightfall: remove card lifts entirely for calm (low motion) */
+[data-obsidian-preset="nightfall"] [class*="stat_block"]:hover {
+    transform: none;
+}
+
+/* Marine: crisp edges, lighter font weight on nav pills */
+[data-obsidian-preset="marine"] .w-full.bg-neutral-700 > div > a {
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+/* Aurora + Slate already carry their own spacing/scaling from tokens. */
+
+/* ---- LOGIN PAGE (Authentication/Container) ---------------------------
+     Each preset gives the login/auth pages a distinct frame via the same
+     design tokens. Safe: targets form/box wrappers only; never disables
+     login behaviour. */
+[data-obsidian-preset="ember"] form,
+[data-obsidian-preset="ember"] .box {
+    border: 1px solid var(--obsidian-border-error);
+    box-shadow: var(--obsidian-shadow-md);
+}
+[data-obsidian-preset="nightfall"] form,
+[data-obsidian-preset="nightfall"] .box {
+    border: 1px solid var(--obsidian-border-strong);
+    box-shadow: var(--obsidian-shadow-subtle, none);
+}
+[data-obsidian-preset="marine"] form,
+[data-obsidian-preset="marine"] .box {
+    border-radius: 4px;
+    border: 1px solid var(--obsidian-border);
+}
+[data-obsidian-preset="violet"] form,
+[data-obsidian-preset="violet"] .box {
+    border-radius: var(--obsidian-radius);
+    box-shadow: var(--obsidian-shadow-md);
+}
+[data-obsidian-preset="pebble"] form,
+[data-obsidian-preset="pebble"] .box {
+    border-radius: var(--obsidian-radius);
+}
+/* ==== obsidian-studio.css ==== */
+/* =============================================================================
+   obsidianTheme - Theme Studio UI (.obs-st-*)
+   Premium admin builder styling for the /account/customizer page.
+   Lightweight, self-contained; uses the same obsidian tokens.
+   ============================================================================= */
+
+.obs-st {
+    position: relative;
+    padding: 1.5rem;
+    border-radius: var(--obsidian-radius, 12px);
+    background: var(--obsidian-surface, #1a1a1a);
+    border: 1px solid var(--obsidian-border, #2a2a2a);
+    box-shadow: var(--obsidian-shadow-lg, 0 8px 32px rgba(0,0,0,0.3));
+    color: var(--obsidian-text, #eee);
+    font-family: var(--obsidian-font-sans, system-ui, sans-serif);
+    margin-bottom: 3rem;
+}
+
+/* ---- Header ---- */
+.obs-st-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--obsidian-border, #2a2a2a);
+    margin-bottom: 1rem;
+}
+.obs-st-title {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--obsidian-text-heading, #fff);
+    letter-spacing: 0.01em;
+}
+.obs-st-sub {
+    margin: 0.25rem 0 0;
+    font-size: 0.85rem;
+    color: var(--obsidian-text-muted, #999);
+}
+.obs-st-header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* ---- Tabs ---- */
+.obs-st-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    background: var(--obsidian-background, #111);
+    border: 1px solid var(--obsidian-border, #2a2a2a);
+    border-radius: 10px;
+    margin-bottom: 1.25rem;
+}
+.obs-st-tab {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: var(--obsidian-text-secondary, #bbb);
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.5rem 0.9rem;
+    border-radius: 8px;
+    transition: background-color 150ms ease, color 150ms ease;
+}
+.obs-st-tab:hover { background: var(--obsidian-surface-2, #262626); color: var(--obsidian-text, #eee); }
+.obs-st-tab.is-active {
+    background: var(--obsidian-primary-subtle, rgba(120,170,80,0.18));
+    color: var(--obsidian-text-link, #a7cf6f);
+    font-weight: 600;
+}
+
+/* ---- Body / panels ---- */
+.obs-st-body {
+    display: grid;
+    gap: 1rem;
+}
+.obs-st-panel {
+    padding: 1.25rem;
+    background: var(--obsidian-surface-2, #1e1e1e);
+    border: 1px solid var(--obsidian-border, #2a2a2a);
+    border-radius: 12px;
+}
+.obs-st-heading {
+    margin: 0 0 0.25rem;
+    font-size: 1.05rem;
+    font-weight: 650;
+    color: var(--obsidian-text-heading, #fff);
+}
+.obs-st-hint {
+    margin: 0 0 1rem;
+    font-size: 0.85rem;
+    color: var(--obsidian-text-muted, #999);
+}
+
+/* ---- Groups / rows ---- */
+.obs-st-group {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+.obs-st-row {
+    display: grid;
+    grid-template-columns: 1fr 140px;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.35rem 0;
+}
+.obs-st-label {
+    font-size: 0.875rem;
+    color: var(--obsidian-text, #eee);
+}
+.obs-st-control { display: flex; gap: 0.4rem; align-items: center; justify-content: flex-end; }
+.obs-st-grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3rem 1.25rem;
+}
+
+/* ---- Controls ---- */
+.obs-st-select,
+.obs-st-hex,
+.obs-st-dim {
+    background: var(--obsidian-input-bg, #161616);
+    color: var(--obsidian-input-text, #eee);
+    border: 1px solid var(--obsidian-input-border, #333);
+    border-radius: 8px;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.825rem;
+    width: 100%;
+}
+.obs-st-select:focus, .obs-st-hex:focus, .obs-st-dim:focus {
+    outline: none;
+    border-color: var(--obsidian-border-focus, #a7cf6f);
+    box-shadow: 0 0 0 1px var(--obsidian-primary-subtle, rgba(120,170,80,0.3));
+}
+.obs-st-hex { font-family: var(--obsidian-font-mono, monospace); }
+.obs-st-color {
+    width: 36px; height: 36px;
+    padding: 0;
+    border: 1px solid var(--obsidian-border, #333);
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+}
+.obs-st-dim { width: 140px; }
+
+/* ---- Buttons ---- */
+.obs-st-btn {
+    appearance: none;
+    cursor: pointer;
+    border: 1px solid var(--obsidian-border, #333);
+    background: var(--obsidian-surface-2, #222);
+/* ---- Preset gallery cards ---- */
+.obs-st-presets {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.75rem;
+}
+.obs-st-preset {
+    position: relative;
+    text-align: left;
+    cursor: pointer;
+    border: 1px solid var(--obsidian-border, #2a2a2a);
+    background: var(--obsidian-surface, #1c1c1c);
+    border-radius: 12px;
+    padding: 0.75rem;
+    transition: border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+}
+.obs-st-preset:hover { border-color: var(--obsidian-border-strong, #3a3a3a); transform: translateY(-2px); }
+.obs-st-preset.is-active {
+    border-color: var(--obsidian-primary, #7aae52);
+    box-shadow: 0 0 0 1px var(--obsidian-primary, #7aae52);
+}
+.obs-st-preset-preview {
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 0.6rem;
+    border: 1px solid var(--obsidian-border, #2a2a2a);
+}
+.obs-st-prev-bg {
+    display: block;
+    position: relative;
+    height: 64px;
+    width: 100%;
+    padding: 6px;
+    box-sizing: border-box;
+}
+.obs-st-prev-side {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 22px;
+    display: block;
+}
+.obs-st-prev-card {
+    display: block;
+    height: 30px;
+    border-radius: 6px;
+    margin: 10px 0 0 30px;
+    border: 1px solid transparent;
+    position: relative;
+}
+.obs-st-prev-dot {
+    position: absolute;
+    right: 6px; top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    display: block;
+}
+.obs-st-preset-name {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 650;
+    color: var(--obsidian-text-heading, #fff);
+}
+.obs-st-preset-tag {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    color: var(--obsidian-text-muted, #999);
+}
+.obs-st-preset-badge {
+    position: absolute;
+    top: 0.6rem; right: 0.6rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    background: var(--obsidian-primary, #7aae52);
+    color: var(--obsidian-text-inverse, #0d1117);
+}
+
+/* ---- Footer ---- */
+.obs-st-footer {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--obsidian-border, #2a2a2a);
+    font-size: 0.8rem;
+    color: var(--obsidian-text-muted, #999);
+    text-align: center;
+}
+
+/* Inputs for dim/spacing edits */
+.obs-st-dim-wrap input { width: 140px; }
+
+/* ---- Responsive: stack rows on mobile ---- */
+@media (max-width: 720px) {
+    .obs-st { padding: 1rem; }
+    .obs-st-row { grid-template-columns: 1fr; gap: 0.4rem; }
+    .obs-st-control { justify-content: flex-start; }
+    .obs-st-grid2 { grid-template-columns: 1fr; }
+    .obs-st-header { flex-direction: column; }
+    .obs-st-tabs { overflow-x: auto; flex-wrap: nowrap; }
+    .obs-st-tab { white-space: nowrap; }
+    .obs-st-presets { grid-template-columns: 1fr; }
+}
+    color: var(--obsidian-text, #eee);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.5rem 0.9rem;
+    border-radius: 8px;
+    transition: background-color 150ms ease, transform 150ms ease;
+}
+.obs-st-btn:hover:not(:disabled) { background: var(--obsidian-surface-3, #2d2d2d); }
+.obs-st-btn:active:not(:disabled) { transform: translateY(1px); }
+.obs-st-btn:disabled { opacity: 0.45; cursor: default; }
+.obs-st-btn-primary {
+    background: var(--obsidian-primary, #7aae52);
+    border-color: var(--obsidian-primary, #7aae52);
+    color: var(--obsidian-text-inverse, #0d1117);
+}
+.obs-st-btn-primary:hover:not(:disabled) { background: var(--obsidian-primary-hover, #8cc463); }
+.obs-st-btn-row { display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
