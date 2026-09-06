@@ -1,0 +1,159 @@
+/* =============================================================================
+   obsidianTheme — Base Styles & Resets
+   ============================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── Global Reset ── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--obsidian-font-sans);
+    font-size: var(--obsidian-font-size-base);
+    font-weight: var(--obsidian-font-weight-normal);
+    line-height: var(--obsidian-line-height-normal);
+    color: var(--obsidian-text);
+    background-color: var(--obsidian-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--obsidian-font-heading);
+    font-weight: var(--obsidian-font-weight-semibold);
+    line-height: var(--obsidian-line-height-tight);
+    letter-spacing: var(--obsidian-letter-spacing-tight);
+    color: var(--obsidian-text-heading);
+}
+
+h1 { font-size: var(--obsidian-font-size-3xl); }
+h2 { font-size: var(--obsidian-font-size-2xl); }
+h3 { font-size: var(--obsidian-font-size-xl); }
+h4 { font-size: var(--obsidian-font-size-lg); }
+h5 { font-size: var(--obsidian-font-size-md); }
+h6 { font-size: var(--obsidian-font-size-base); }
+
+p {
+    color: var(--obsidian-text-secondary);
+    line-height: var(--obsidian-line-height-relaxed);
+}
+
+a {
+    color: var(--obsidian-text-link);
+    text-decoration: none;
+    transition: color var(--obsidian-transition-fast);
+}
+
+a:hover {
+    color: var(--obsidian-text-link-hover);
+}
+
+code, kbd, pre, samp {
+    font-family: var(--obsidian-font-mono);
+    font-size: var(--obsidian-font-size-sm);
+}
+
+code {
+    color: var(--obsidian-text-code);
+    background: var(--obsidian-surface-2);
+    padding: 2px 6px;
+    border-radius: var(--obsidian-radius-xs);
+    border: 1px solid var(--obsidian-border-subtle);
+}
+
+/* ── Selection ── */
+::selection {
+    background: var(--obsidian-primary-subtle);
+    color: var(--obsidian-text);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--obsidian-scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--obsidian-scrollbar-thumb);
+    border-radius: var(--obsidian-radius-full);
+    transition: background var(--obsidian-transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--obsidian-scrollbar-hover);
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--obsidian-scrollbar-thumb) var(--obsidian-scrollbar-track);
+}
+
+/* ── Focus Styles (Accessible) ── */
+:focus-visible {
+    outline: 2px solid var(--obsidian-border-focus);
+    outline-offset: 2px;
+    border-radius: var(--obsidian-radius-xs);
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* ── Images ── */
+img, svg {
+    max-width: 100%;
+    display: block;
+}
+
+img {
+    height: auto;
+}
+
+/* ── Lists ── */
+ul, ol {
+    list-style: none;
+}
+
+/* ── HR ── */
+hr {
+    border: none;
+    border-top: 1px solid var(--obsidian-border);
+    margin: var(--obsidian-space-4) 0;
+}
+
+/* ── Screen reader only ── */
+.obsidian-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ── Utility: No transition for immediate theme switches ── */
+.obsidian-no-transition,
+.obsidian-no-transition * {
+    transition: none !important;
+}

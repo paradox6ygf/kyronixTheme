@@ -1,0 +1,18 @@
+info:
+  name: Obsidian Theme
+  identifier: obsidiantheme
+  description: A polished dark theme for Pterodactyl Panel with a live, admin-only theme customizer.
+  version: "1.0.1"
+  target: "rolling"
+  author: "paradox6ygf"
+  icon: "assets/icon.png"
+
+admin:
+  view: "views/index.blade.php"
+  css: "assets/admin.css"
+
+dashboard:
+  components: "components"
+
+data:
+  directory: "data"

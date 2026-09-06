@@ -1,0 +1,25 @@
+{
+    "version": "1.0.0",
+    "mode": "dark",
+    "animation": "medium",
+    "density": "default",
+    "colors": {
+        "primary": "hsl(222, 70%, 58%)",
+        "secondary": "hsl(258, 60%, 62%)",
+        "accent": "hsl(190, 90%, 50%)"
+    },
+    "typography": {
+        "fontFamily": "'Inter', 'Outfit', system-ui, sans-serif"
+    },
+    "layout": {
+        "sidebarWidth": "256px",
+        "navbarHeight": "60px",
+        "cardRadius": "8px"
+    },
+    "branding": {
+        "panelName": "obsidianTheme",
+        "logoText": "Obsidian",
+        "footerText": "Powered by Pterodactyl & obsidianTheme"
+    },
+    "customCSS": ""
+}

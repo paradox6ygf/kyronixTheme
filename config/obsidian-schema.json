@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "version": { "type": "string" },
+        "mode": { "enum": ["dark", "light", "system"] },
+        "animation": { "enum": ["off", "low", "medium", "high"] },
+        "density": { "enum": ["compact", "default", "comfortable"] },
+        "colors": {
+            "type": "object",
+            "properties": {
+                "primary": { "type": "string" },
+                "secondary": { "type": "string" },
+                "accent": { "type": "string" },
+                "background": { "type": "string" },
+                "surface": { "type": "string" },
+                "sidebar": { "type": "string" },
+                "navbar": { "type": "string" },
+                "text": { "type": "string" },
+                "border": { "type": "string" }
+            }
+        },
+        "typography": {
+            "type": "object",
+            "properties": {
+                "fontFamily": { "type": "string" }
+            }
+        },
+        "layout": {
+            "type": "object",
+            "properties": {
+                "sidebarWidth": { "type": "string" },
+                "navbarHeight": { "type": "string" },
+                "cardRadius": { "type": "string" }
+            }
+        },
+        "branding": {
+            "type": "object",
+            "properties": {
+                "panelName": { "type": "string" },
+                "logoText": { "type": "string" },
+                "faviconUrl": { "type": "string" },
+                "logoUrl": { "type": "string" },
+                "loginLogoUrl": { "type": "string" },
+                "loginBackground": { "type": "string" },
+                "footerText": { "type": "string" }
+            }
+        },
+        "customCSS": { "type": "string" }
+    }
+}

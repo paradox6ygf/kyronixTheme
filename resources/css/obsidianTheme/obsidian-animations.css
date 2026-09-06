@@ -1,0 +1,191 @@
+/* =============================================================================
+   obsidianTheme — Animation System
+   Supports: OFF / LOW / MEDIUM / HIGH
+   Respects prefers-reduced-motion (handled in tokens).
+   ============================================================================= */
+
+/* ─────────────────────────────────────────────
+   KEYFRAMES
+───────────────────────────────────────────── */
+@keyframes obsidian-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes obsidian-fade-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+@keyframes obsidian-fade-in-down {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes obsidian-fade-in-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes obsidian-slide-up {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+@keyframes obsidian-slide-in-right {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes obsidian-slide-in-left {
+    from { opacity: 0; transform: translateX(-20px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes obsidian-scale-in {
+    from { opacity: 0; transform: scale(0.94); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes obsidian-skeleton {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+@keyframes obsidian-spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes obsidian-pulse {
+    0%, 100% { opacity: 1;   transform: scale(1); }
+    50%      { opacity: 0.7; transform: scale(1.2); }
+}
+
+@keyframes obsidian-bounce {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+}
+
+@keyframes obsidian-ping {
+    0%   { transform: scale(1);    opacity: 1; }
+    75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes obsidian-glow-pulse {
+    0%, 100% { box-shadow: 0 0 0   0 var(--obsidian-primary-subtle); }
+    50%      { box-shadow: 0 0 20px 4px var(--obsidian-primary-subtle); }
+}
+
+/* ─────────────────────────────────────────────
+   ANIMATION UTILITIES
+───────────────────────────────────────────── */
+.obsidian-animate-fade-in       { animation: obsidian-fade-in       var(--obsidian-transition) both; }
+.obsidian-animate-fade-in-down  { animation: obsidian-fade-in-down  var(--obsidian-transition) both; }
+.obsidian-animate-fade-in-up    { animation: obsidian-fade-in-up    var(--obsidian-transition) both; }
+.obsidian-animate-slide-up      { animation: obsidian-slide-up      var(--obsidian-transition-spring) both; }
+.obsidian-animate-scale-in      { animation: obsidian-scale-in      var(--obsidian-transition-spring) both; }
+
+/* Stagger helpers */
+.obsidian-animate-delay-1 { animation-delay: 50ms;  }
+.obsidian-animate-delay-2 { animation-delay: 100ms; }
+.obsidian-animate-delay-3 { animation-delay: 150ms; }
+.obsidian-animate-delay-4 { animation-delay: 200ms; }
+.obsidian-animate-delay-5 { animation-delay: 250ms; }
+
+/* ─────────────────────────────────────────────
+   PAGE TRANSITION
+───────────────────────────────────────────── */
+.obsidian-page-enter {
+    animation: obsidian-fade-in-up var(--obsidian-transition-slow) both;
+}
+
+/* ─────────────────────────────────────────────
+   ANIMATION LEVEL OVERRIDES
+   Levels controlled by data attribute set by customizer
+───────────────────────────────────────────── */
+
+/* Level: OFF */
+[data-obsidian-animation="off"] *,
+[data-obsidian-animation="off"] *::before,
+[data-obsidian-animation="off"] *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 1ms !important;
+    transition-delay: 0ms !important;
+}
+
+/* Level: LOW — only essentials */
+[data-obsidian-animation="low"] .obsidian-card:hover {
+    transform: none;
+}
+[data-obsidian-animation="low"] .obsidian-server-card:hover {
+    transform: none;
+}
+[data-obsidian-animation="low"] .obsidian-btn:active {
+    transform: none;
+}
+
+/* Level: HIGH — additional effects */
+[data-obsidian-animation="high"] .obsidian-sidebar__item--active {
+    animation: obsidian-glow-pulse 3s ease-in-out infinite;
+}
+
+[data-obsidian-animation="high"] .obsidian-badge--pulsing .obsidian-badge__dot {
+    animation: obsidian-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ─────────────────────────────────────────────
+   MICRO-INTERACTIONS
+───────────────────────────────────────────── */
+
+/* Button ripple */
+.obsidian-btn {
+    isolation: isolate;
+}
+
+/* Card hover lift (medium+) */
+[data-obsidian-animation="medium"] .obsidian-card--interactive:hover,
+[data-obsidian-animation="high"] .obsidian-card--interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--obsidian-shadow-lg);
+}
+
+/* Status indicator pulse */
+.obsidian-status-indicator {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.obsidian-status-indicator::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0;
+    animation: obsidian-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+[data-obsidian-animation="off"] .obsidian-status-indicator::before {
+    display: none;
+}
+
+/* Loading dots */
+.obsidian-loading-dots {
+    display: inline-flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.obsidian-loading-dots span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--obsidian-primary);
+    animation: obsidian-bounce 1.2s ease-in-out infinite;
+}
+
+.obsidian-loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.obsidian-loading-dots span:nth-child(3) { animation-delay: 0.4s; }

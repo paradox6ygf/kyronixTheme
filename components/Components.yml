@@ -1,0 +1,16 @@
+navigation:
+  routes:
+    1:
+      name: "Obsidian Theme"
+      path: "customizer"
+      type: "account"
+      component: "ObsidianCustomizer"
+      adminOnly: true
+
+dashboard:
+  global:
+    beforeSection: "ObsidianBootstrap"
+
+authentication:
+  container:
+    beforeContent: "ObsidianBootstrap"

@@ -1,0 +1,4 @@
+﻿* text=auto eol=lf
+conf.yml text eol=lf
+scripts/*.sh text eol=lf
+views/*.php text eol=lf

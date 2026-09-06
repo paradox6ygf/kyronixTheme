@@ -1,0 +1,34 @@
+{
+  "name": "obsidiantheme",
+  "version": "1.0.0",
+  "description": "Premium Pterodactyl Panel theme — beautiful, responsive, highly customizable.",
+  "author": "obsidianTheme Contributors",
+  "license": "MIT",
+  "homepage": "https://github.com/obsidiantheme/obsidiantheme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/obsidiantheme/obsidiantheme.git"
+  },
+  "keywords": [
+    "pterodactyl",
+    "panel",
+    "theme",
+    "hosting",
+    "game-server",
+    "dark-mode",
+    "customizable",
+    "premium"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "node scripts/build-assets.js",
+    "package": "node scripts/build-assets.js && node scripts/package.js",
+    "validate": "node scripts/validate.js",
+    "test": "node scripts/build-assets.js && node scripts/validate.js && node scripts/package.js",
+    "preview": "cd preview && npm run dev",
+    "preview:build": "cd preview && npm run build",
+    "lint:css": "stylelint src/css/**/*.css"
+  }
+}

@@ -1,0 +1,46 @@
+# Runtime artifacts
+logs/
+*.log
+
+# Backups (never commit production backups)
+obsidianTheme-backups/
+
+# Node
+node_modules/
+preview/node_modules/
+preview/dist/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Build artifacts
+dist/
+build/
+
+# Secrets — NEVER commit these
+*.pem
+*.key
+*.crt
+*.pfx
+*.p12
+
+# Temporary
+*.tmp
+*.bak
+*.orig
+obsidiantheme.blueprint
+.stage/
+.backups/
