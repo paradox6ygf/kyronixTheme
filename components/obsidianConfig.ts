@@ -32,6 +32,8 @@ export interface ObsidianConfig {
         serverCard: CardLayout;
         serverGrid?: string;
         statusPos?: string;
+        cardPad?: string;
+        cardWidth?: string;
     };
     typography: {
         scale: string; headingScale: string; navSize: string; monoSize: string;
@@ -444,8 +446,10 @@ export function sanitizeConfig(input: unknown): ObsidianConfig {
     cfg.layout.console = safeEnum(cfg.layout.console, ['fullWidth', 'center', 'left', 'right'] as const) || 'fullWidth';
     cfg.layout.charts = safeEnum(cfg.layout.charts, ['1', '2', '3', 'auto'] as const) || '2';
     cfg.layout.serverCard = safeEnum(cfg.layout.serverCard, ['compact', 'standard', 'dashboard'] as const) || 'standard';
-    cfg.layout.serverGrid = safeEnum(cfg.layout.serverGrid, ['1', '2', '3', '4', 'auto'] as const) || '2';
-    cfg.layout.statusPos = safeEnum(cfg.layout.statusPos, ['top', 'inline', 'hidden'] as const) || 'top';
+    cfg.layout.serverGrid = safeEnum(cfg.layout.serverGrid, ['1', '2', '3', '4', 'auto', 'autofill'] as const) || '2';
+    cfg.layout.cardPad = safeDim(cfg.layout.cardPad) || '1.125rem';
+    cfg.layout.cardWidth = safeDim(cfg.layout.cardWidth) || '';
+    cfg.layout.statusPos = safeEnum(cfg.layout.statusPos, ['top', 'bottom', 'left', 'right', 'inline', 'hidden'] as const) || 'top';
     for (const section of ['typography', 'spacing', 'buttons', 'console', 'icons'] as const) {
         const sec = cfg[section] as Record<string, unknown>;
         for (const k of Object.keys(sec)) {
@@ -506,6 +510,10 @@ export function applyConfig(config: ObsidianConfig): void {
     root.setAttribute('data-obsidian-console', config.layout?.console || 'fullWidth');
     root.setAttribute('data-obsidian-grid', config.layout?.serverGrid || '2');
     root.setAttribute('data-obsidian-status', config.layout?.statusPos || 'top');
+    if (config.layout?.cardPad) root.style.setProperty('--obsidian-card-pad', config.layout.cardPad);
+    else root.style.removeProperty('--obsidian-card-pad');
+    if (config.layout?.cardWidth) root.style.setProperty('--obsidian-card-max', config.layout.cardWidth);
+    else root.style.removeProperty('--obsidian-card-max');
 
     // Custom color overrides propagate to every component via the token system.
     for (const [key, cssVar] of Object.entries(COLOR_TOKENS)) {

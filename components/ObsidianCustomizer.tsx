@@ -362,12 +362,34 @@ export default function ObsidianCustomizer() {
                                     <option value="3">3 columns</option>
                                     <option value="4">4 columns</option>
                                     <option value="auto">Auto fit</option>
+                                    <option value="autofill">Auto fill</option>
+                                </select>
+                            </Row>
+                            <Row label="Card padding">
+                                <select className="obs-st-select" value={config.layout.cardPad || '1.125rem'}
+                                    onChange={(e) => setLayout('cardPad', e.target.value)} aria-label="Server card padding">
+                                    <option value="0.75rem">Compact</option>
+                                    <option value="1.125rem">Default</option>
+                                    <option value="1.5rem">Spacious</option>
+                                </select>
+                            </Row>
+                            <Row label="Card radius">
+                                <select className="obs-st-select" value={config.borders?.cardRadius || '0.625rem'}
+                                    onChange={(e) => push({ ...config, borders: { ...config.borders, cardRadius: e.target.value } })} aria-label="Server card radius">
+                                    <option value="0px">Sharp</option>
+                                    <option value="0.375rem">Soft</option>
+                                    <option value="0.625rem">Default</option>
+                                    <option value="0.875rem">Rounded</option>
+                                    <option value="1.25rem">Pill</option>
                                 </select>
                             </Row>
                             <Row label="Status indicator">
                                 <select className="obs-st-select" value={config.layout.statusPos || 'top'}
                                     onChange={(e) => setLayout('statusPos', e.target.value)} aria-label="Status indicator position">
                                     <option value="top">Top accent</option>
+                                    <option value="bottom">Bottom accent</option>
+                                    <option value="left">Left accent</option>
+                                    <option value="right">Right accent</option>
                                     <option value="inline">Inline (stock)</option>
                                     <option value="hidden">Subtle</option>
                                 </select>

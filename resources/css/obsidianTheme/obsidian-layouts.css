@@ -223,7 +223,8 @@ div.grid:has(> a[href*='/server/']) {
 [data-obsidian-grid='2'] div.grid:has(> a[href*='/server/']) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
 [data-obsidian-grid='3'] div.grid:has(> a[href*='/server/']) { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
 [data-obsidian-grid='4'] div.grid:has(> a[href*='/server/']) { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
-[data-obsidian-grid='auto'] div.grid:has(> a[href*='/server/']) { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)) !important; }
+[data-obsidian-grid='auto'] div.grid:has(> a[href*='/server/']) { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)) !important; }
+[data-obsidian-grid='autofill'] div.grid:has(> a[href*='/server/']) { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)) !important; }
 @media (max-width: 1024px) {
     div.grid:has(> a[href*='/server/']) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
 }
@@ -259,4 +260,12 @@ a[href*='/server/']:hover {
 [data-obsidian-status='hidden'] a[href*='/server/'] {
     border-top: var(--obsidian-border-width, 1px) solid var(--obsidian-border, #2a2a2a) !important;
 }
+[data-obsidian-status='bottom'] a[href*='/server/'] { border-top: var(--obsidian-border-width, 1px) solid var(--obsidian-border, #2a2a2a) !important; border-bottom: 3px solid var(--obsidian-status-online, #7aae52) !important; }
+[data-obsidian-status='bottom'] a[href*='/server/']:hover { border-bottom-color: var(--obsidian-primary, #9db95c) !important; }
+[data-obsidian-status='left'] a[href*='/server/'] { border-top: var(--obsidian-border-width, 1px) solid var(--obsidian-border, #2a2a2a) !important; border-left: 3px solid var(--obsidian-status-online, #7aae52) !important; }
+[data-obsidian-status='left'] a[href*='/server/']:hover { border-left-color: var(--obsidian-primary, #9db95c) !important; }
+[data-obsidian-status='right'] a[href*='/server/'] { border-top: var(--obsidian-border-width, 1px) solid var(--obsidian-border, #2a2a2a) !important; border-right: 3px solid var(--obsidian-status-online, #7aae52) !important; }
+[data-obsidian-status='right'] a[href*='/server/']:hover { border-right-color: var(--obsidian-primary, #9db95c) !important; }
+/* card max width control */
+[style*='--obsidian-card-max'] div.grid:has(> a[href*='/server/']) a[href*='/server/'] { max-width: var(--obsidian-card-max, none); }
 /* inline: stock Pterodactyl placement, unchanged */
