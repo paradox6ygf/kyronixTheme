@@ -269,3 +269,18 @@ a[href*='/server/']:hover {
 /* card max width control */
 [style*='--obsidian-card-max'] div.grid:has(> a[href*='/server/']) a[href*='/server/'] { max-width: var(--obsidian-card-max, none); }
 /* inline: stock Pterodactyl placement, unchanged */
+
+
+/* ---- Server card structural modes: real DOM/layout differences ---- */
+/* Vertical: stacked columns */
+[data-obsidian-card='vertical'] a[href*='/server/'] { flex-direction: column; align-items: stretch; gap: 0.375rem; }
+/* Horizontal: row layout, stats inline */
+[data-obsidian-card='horizontal'] a[href*='/server/'] { flex-direction: row; align-items: center; gap: 1rem; flex-wrap: wrap; }
+/* Split: info left, stats pushed right */
+[data-obsidian-card='split'] a[href*='/server/'] { flex-direction: row; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+/* Compact: tight padding + dense text */
+[data-obsidian-card='compact'] a[href*='/server/'] { gap: 0.25rem; font-size: 0.8125rem; }
+/* Dashboard: rich card, taller, larger text */
+[data-obsidian-card='dashboard'] a[href*='/server/'] { gap: 0.625rem; font-size: 0.9375rem; min-height: 140px; }
+/* Minimal: name + status focus, reduced chrome */
+[data-obsidian-card='minimal'] a[href*='/server/'] { gap: 0.25rem; padding: 0.625rem 0.875rem !important; box-shadow: none !important; }

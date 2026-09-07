@@ -418,7 +418,13 @@ export default function ObsidianCustomizer() {
                             <Row label="Server card style">
                                 <select className="obs-st-select" value={config.layout.serverCard}
                                     onChange={(e) => setLayout('serverCard', e.target.value)} aria-label="Server card layout">
+                                                                        <option value="standard">Standard</option>
+                                    <option value="horizontal">Horizontal</option>
+                                    <option value="vertical">Vertical</option>
                                     <option value="compact">Compact</option>
+                                    <option value="split">Split</option>
+                                    <option value="dashboard">Dashboard</option>
+                                    <option value="minimal">Minimal</option>
                                     <option value="standard">Standard</option>
                                     <option value="dashboard">Dashboard</option>
                                 </select>

@@ -12,7 +12,7 @@ export type DensityMode = 'compact' | 'default' | 'comfortable';
 export type PresetId = 'core' | 'slate' | 'aurora' | 'ember' | 'nightfall' |
 'pebble' | 'marine' | 'violet' | 'carbon' | 'estate';
 export type Side = 'left' | 'right' | 'hidden';
-export type CardLayout = 'compact' | 'standard' | 'dashboard';
+export type CardLayout = 'compact' | 'standard' | 'dashboard' | 'horizontal' | 'vertical' | 'split' | 'minimal';
 export type ShadowLevel = 'none' | 'subtle' | 'medium';
 export type StatusKey = 'online' | 'offline' | 'starting' | 'stopping' | 'installing' | 'suspended';
 
@@ -445,7 +445,7 @@ export function sanitizeConfig(input: unknown): ObsidianConfig {
     cfg.layout.actions = safeEnum(cfg.layout.actions, ['topRight', 'topLeft', 'belowName', 'aboveConsole'] as const) || 'topRight';
     cfg.layout.console = safeEnum(cfg.layout.console, ['fullWidth', 'center', 'left', 'right'] as const) || 'fullWidth';
     cfg.layout.charts = safeEnum(cfg.layout.charts, ['1', '2', '3', 'auto'] as const) || '2';
-    cfg.layout.serverCard = safeEnum(cfg.layout.serverCard, ['compact', 'standard', 'dashboard'] as const) || 'standard';
+    cfg.layout.serverCard = safeEnum(cfg.layout.serverCard, ['compact', 'standard', 'dashboard', 'horizontal', 'vertical', 'split', 'minimal'] as const) || 'standard';
     cfg.layout.serverGrid = safeEnum(cfg.layout.serverGrid, ['1', '2', '3', '4', 'auto', 'autofill'] as const) || '2';
     cfg.layout.cardPad = safeDim(cfg.layout.cardPad) || '1.125rem';
     cfg.layout.cardWidth = safeDim(cfg.layout.cardWidth) || '';
