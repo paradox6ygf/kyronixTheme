@@ -13,6 +13,7 @@ import {
     COLOR_LABELS, COLOR_TOKENS, STATUS_LABELS, STATUS_TOKENS,
     loadConfig, saveConfig, resetConfig, sanitizeConfig, deepMerge, applyConfig,
 } from './obsidianConfig';
+import ObsidianPreview from './ObsidianPreview';
 
 type Section = 'presets' | 'layout' | 'colors' | 'typography' | 'console' | 'components' | 'status' | 'branding';
 
@@ -255,6 +256,8 @@ export default function ObsidianCustomizer() {
                     </button>
                 </div>
             </header>
+
+            <ObsidianPreview config={config} />
 
             <nav className="obs-st-tabs" role="tablist">
                 {SECTIONS.map((s) => (
