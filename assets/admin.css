@@ -912,6 +912,58 @@ code, pre { color: var(--obsidian-text-code); background-color: var(--obsidian-s
 [data-obsidian-preset="pebble"] .box {
     border-radius: var(--obsidian-radius);
 }
+
+/* =============================================================================
+   SERVER LIST GRID — real layout control over the Pterodactyl dashboard grid
+   Targets the grid container that holds server links (:has is supported in
+   every current browser) so no Pterodactyl class names are hard-coded.
+   ============================================================================= */
+div.grid:has(> a[href*='/server/']) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: var(--obsidian-card-gap, 1rem) !important;
+}
+[data-obsidian-grid='1'] div.grid:has(> a[href*='/server/']) { grid-template-columns: minmax(0, 1fr) !important; }
+[data-obsidian-grid='2'] div.grid:has(> a[href*='/server/']) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+[data-obsidian-grid='3'] div.grid:has(> a[href*='/server/']) { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+[data-obsidian-grid='4'] div.grid:has(> a[href*='/server/']) { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+[data-obsidian-grid='auto'] div.grid:has(> a[href*='/server/']) { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)) !important; }
+@media (max-width: 1024px) {
+    div.grid:has(> a[href*='/server/']) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 768px) {
+    div.grid:has(> a[href*='/server/']) { grid-template-columns: minmax(0, 1fr) !important; }
+}
+
+/* ---- Server cards: premium restyle, data untouched ---- */
+a[href*='/server/'] {
+    background: var(--obsidian-surface, #161616) !important;
+    border: var(--obsidian-border-width, 1px) solid var(--obsidian-border, #2a2a2a) !important;
+    border-radius: var(--obsidian-card-radius, 0.625rem) !important;
+    padding: var(--obsidian-card-pad, 1.125rem) !important;
+    transition: border-color var(--obsidian-transition, 150ms ease),
+                box-shadow var(--obsidian-transition, 150ms ease),
+                transform var(--obsidian-transition, 150ms ease) !important;
+}
+a[href*='/server/']:hover {
+    border-color: var(--obsidian-primary, #9db95c) !important;
+    box-shadow: var(--obsidian-shadow-card, 0 2px 8px rgb(0 0 0 / 0.35));
+    transform: translateY(-2px);
+}
+[data-obsidian-card='compact'] a[href*='/server/'] { padding: 0.75rem 0.875rem !important; }
+[data-obsidian-card='dashboard'] a[href*='/server/'] { padding: 1.5rem !important; }
+
+/* ---- Status accent: position is configurable, data stays real ---- */
+[data-obsidian-status='top'] a[href*='/server/'] {
+    border-top: 3px solid var(--obsidian-status-online, #7aae52) !important;
+}
+[data-obsidian-status='top'] a[href*='/server/']:hover {
+    border-top-color: var(--obsidian-primary, #9db95c) !important;
+}
+[data-obsidian-status='hidden'] a[href*='/server/'] {
+    border-top: var(--obsidian-border-width, 1px) solid var(--obsidian-border, #2a2a2a) !important;
+}
+/* inline: stock Pterodactyl placement, unchanged */
+
 /* ==== obsidian-studio.css ==== */
 /* =============================================================================
    obsidianTheme - Theme Studio UI (.obs-st-*)

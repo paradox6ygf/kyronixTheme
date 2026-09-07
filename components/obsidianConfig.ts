@@ -9,7 +9,8 @@
 export type ThemeMode = 'dark' | 'light' | 'system';
 export type AnimationLevel = 'off' | 'low' | 'medium' | 'high';
 export type DensityMode = 'compact' | 'default' | 'comfortable';
-export type PresetId = 'core' | 'slate' | 'aurora' | 'ember' | 'nightfall' | 'pebble' | 'marine' | 'violet';
+export type PresetId = 'core' | 'slate' | 'aurora' | 'ember' | 'nightfall' |
+'pebble' | 'marine' | 'violet' | 'carbon' | 'estate';
 export type Side = 'left' | 'right' | 'hidden';
 export type CardLayout = 'compact' | 'standard' | 'dashboard';
 export type ShadowLevel = 'none' | 'subtle' | 'medium';
@@ -29,6 +30,8 @@ export interface ObsidianConfig {
         console: 'fullWidth' | 'center' | 'left' | 'right';
         charts: '1' | '2' | '3' | 'auto';
         serverCard: CardLayout;
+        serverGrid?: string;
+        statusPos?: string;
     };
     typography: {
         scale: string; headingScale: string; navSize: string; monoSize: string;
@@ -345,7 +348,42 @@ violet: {
             },
         },
     },
+    carbon: {
+        name: 'Obsidian Carbon',
+        tagline: 'Monospaced, flat, engineered — zero shadows, razor-sharp geometry.',
+        config: {
+            preset: 'carbon', mode: 'dark', animation: 'low', density: 'compact',
+            layout: { sidebar: 'left', serverNav: 'left', resources: 'top', actions: 'topRight', console: 'fullWidth', charts: '2', serverCard: 'compact', serverGrid: '3', statusPos: 'top' },
+            typography: { scale: '0.8125rem', headingScale: '1.15', navSize: '0.8125rem', monoSize: '0.8125rem', lineHeight: '1.5', letterSpacing: '0.01em', weightHeadings: '500' },
+            spacing: { page: '1.25rem', cardGap: '0.875rem', sectionGap: '1.25rem', navItem: '2.25rem', consolePad: '0.875rem', tablePad: '0.5rem' },
+            borders: { width: '1px', cardRadius: '3px', buttonRadius: '2px', inputRadius: '2px' },
+            shadows: { level: 'none' },
+            buttons: { height: '2.125rem', paddingX: '0.875rem', weight: '500', uppercase: true },
+            console: { bg: '#0a0a0a', text: '#c8c8c8', fontSize: '0.8125rem', lineHeight: '1.5' },
+            statusColors: { online: '#7aae52', offline: '#b05656', starting: '#c9a84c', stopping: '#c98a4c', installing: '#5c8ab0', suspended: '#8a6d3b' },
+        } as unknown as ObsidianConfig,
+    },
+    estate: {
+        name: 'Obsidian Estate',
+        tagline: 'Light, warm and spacious — a bright take on the obsidian design system.',
+        config: {
+            preset: 'estate', mode: 'light', animation: 'medium', density: 'comfortable',
+            layout: { sidebar: 'left', serverNav: 'left', resources: 'top', actions: 'belowName', console: 'fullWidth', charts: 'auto', serverCard: 'standard', serverGrid: '2', statusPos: 'top' },
+            typography: { scale: '0.9375rem', headingScale: '1.3', navSize: '0.875rem', monoSize: '0.8125rem', lineHeight: '1.6', letterSpacing: '0em', weightHeadings: '600' },
+            spacing: { page: '2rem', cardGap: '1.25rem', sectionGap: '2rem', navItem: '2.75rem', consolePad: '1.25rem', tablePad: '0.75rem' },
+            borders: { width: '1px', cardRadius: '0.875rem', buttonRadius: '0.625rem', inputRadius: '0.625rem' },
+            shadows: { level: 'subtle' },
+            buttons: { height: '2.5rem', paddingX: '1.125rem', weight: '600', uppercase: false },
+            console: { bg: '#1e2226', text: '#d8dde2', fontSize: '0.875rem', lineHeight: '1.6' },
+            statusColors: { online: '#5f9e50', offline: '#b05656', starting: '#c9a84c', stopping: '#c98a4c', installing: '#5c8ab0', suspended: '#9a7b3f' },
+        } as unknown as ObsidianConfig,
+    },
 };
+
+// Structural parity: every preset must define the complete config shape so that
+// applying a preset also clears color overrides from a previously active preset.
+PRESETS.carbon.config = deepMerge(PRESETS.core.config, PRESETS.carbon.config);
+PRESETS.estate.config = deepMerge(PRESETS.core.config, PRESETS.estate.config);
 
 export const DEFAULT_CONFIG: ObsidianConfig = PRESETS.core.config;
 
@@ -393,7 +431,7 @@ export function sanitizeConfig(input: unknown): ObsidianConfig {
         const v = safeColor(status[k]);
         if (v) status[k] = v; else delete status[k];
     }
-    cfg.preset = safeEnum(cfg.preset, ['core', 'slate', 'aurora', 'ember', 'nightfall', 'pebble', 'marine', 'violet'] as const) || 'core';
+    cfg.preset = safeEnum(cfg.preset, ['core', 'slate', 'aurora', 'ember', 'nightfall', 'pebble', 'marine', 'violet', 'carbon', 'estate'] as const) || 'core';
     cfg.mode = safeEnum(cfg.mode, ['dark', 'light', 'system'] as const) || 'dark';
     cfg.animation = safeEnum(cfg.animation, ['off', 'low', 'medium', 'high'] as const) || 'medium';
     cfg.density = safeEnum(cfg.density, ['compact', 'default', 'comfortable'] as const) || 'default';
@@ -406,6 +444,8 @@ export function sanitizeConfig(input: unknown): ObsidianConfig {
     cfg.layout.console = safeEnum(cfg.layout.console, ['fullWidth', 'center', 'left', 'right'] as const) || 'fullWidth';
     cfg.layout.charts = safeEnum(cfg.layout.charts, ['1', '2', '3', 'auto'] as const) || '2';
     cfg.layout.serverCard = safeEnum(cfg.layout.serverCard, ['compact', 'standard', 'dashboard'] as const) || 'standard';
+    cfg.layout.serverGrid = safeEnum(cfg.layout.serverGrid, ['1', '2', '3', '4', 'auto'] as const) || '2';
+    cfg.layout.statusPos = safeEnum(cfg.layout.statusPos, ['top', 'inline', 'hidden'] as const) || 'top';
     for (const section of ['typography', 'spacing', 'buttons', 'console', 'icons'] as const) {
         const sec = cfg[section] as Record<string, unknown>;
         for (const k of Object.keys(sec)) {
@@ -464,6 +504,8 @@ export function applyConfig(config: ObsidianConfig): void {
     root.setAttribute('data-obsidian-actions', config.layout?.actions || 'topRight');
     root.setAttribute('data-obsidian-resources', config.layout?.resources || 'right');
     root.setAttribute('data-obsidian-console', config.layout?.console || 'fullWidth');
+    root.setAttribute('data-obsidian-grid', config.layout?.serverGrid || '2');
+    root.setAttribute('data-obsidian-status', config.layout?.statusPos || 'top');
 
     // Custom color overrides propagate to every component via the token system.
     for (const [key, cssVar] of Object.entries(COLOR_TOKENS)) {

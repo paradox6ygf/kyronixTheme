@@ -354,6 +354,24 @@ export default function ObsidianCustomizer() {
                                     <option value="aboveConsole">Above console</option>
                                 </select>
                             </Row>
+                            <Row label="Server grid columns">
+                                <select className="obs-st-select" value={config.layout.serverGrid || '2'}
+                                    onChange={(e) => setLayout('serverGrid', e.target.value)} aria-label="Server grid columns">
+                                    <option value="1">1 column</option>
+                                    <option value="2">2 columns</option>
+                                    <option value="3">3 columns</option>
+                                    <option value="4">4 columns</option>
+                                    <option value="auto">Auto fit</option>
+                                </select>
+                            </Row>
+                            <Row label="Status indicator">
+                                <select className="obs-st-select" value={config.layout.statusPos || 'top'}
+                                    onChange={(e) => setLayout('statusPos', e.target.value)} aria-label="Status indicator position">
+                                    <option value="top">Top accent</option>
+                                    <option value="inline">Inline (stock)</option>
+                                    <option value="hidden">Subtle</option>
+                                </select>
+                            </Row>
                             <Row label="Console">
                                 <select className="obs-st-select" value={config.layout.console}
                                     onChange={(e) => setLayout('console', e.target.value)} aria-label="Console position">
